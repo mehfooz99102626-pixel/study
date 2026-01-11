@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studykeeda Hub - Education Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .app {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        /* Menu Toggle */
+        
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+        /* Mobile Menu */
+        
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .mobile-menu a:hover {
+            color: #ff6b35;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Hero Slider */
+        
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content {
+            position: relative;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            z-index: 2;
+        }
+        
+        .slide-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .slide-content p {
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Navigation Buttons */
+        
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-size: 30px;
+            padding: 15px 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        
+        .nav:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .nav.left {
+            left: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .nav.right {
+            right: 20px;
+            border-radius: 5px 0 0 5px;
+        }
+        /* Slide Indicators */
+        
+        .slide-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.3);
+        }
+        /* Promo Section */
+        
+        .promo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .promo h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .promo p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+        
+        .promo button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .promo button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* Exam Section */
+        
+        .exam-section {
+            padding: 60px 20px;
+            background: white;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .exam-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 50px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .exam-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        .exam-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .exam-card h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .exam-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .exam-tags span {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .exam-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .exam-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .exam-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+        /* Container */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Section */
+        
+        .section {
+            margin: 60px 0;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            position: relative;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+        /* Registration Form Section */
+        
+        .registration-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+        }
+        
+        .registration-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .registration-container h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .registration-container p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        /* Contact Buttons Section */
+        
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .sms-btn {
+            background: #007AFF;
+            color: white;
+        }
+        
+        .sms-btn:hover {
+            background: #0066cc;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+        }
+        
+        .success-message {
+            display: none;
+            background: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        /* Course Grid */
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course {
+            background: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .course img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .course h3 {
+            padding: 20px 20px 10px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        .course p {
+            padding: 0 20px 20px;
+            color: #666;
+        }
+        
+        .course a {
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .course a:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        /* Video Section */
+        
+        .video-container {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+        }
+        
+        .video-description {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+        /* Quiz Section */
+        
+        .quiz {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            text-align: center;
+        }
+        
+        .quiz #question {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .quiz-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .quiz button {
+            background: white;
+            color: #333;
+            border: 2px solid #333;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .quiz button:hover {
+            background: #333;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .quiz-result {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: white;
+            display: inline-block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .quiz-result.hidden {
+            display: none;
+        }
+        /* Footer */
+        
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .footer-section p {
+            margin: 10px 0;
+            color: #bdc3c7;
+        }
+        
+        .footer-section a {
+            display: block;
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Floating WhatsApp Button */
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            .slide-content h1 {
+                font-size: 2rem;
+            }
+            .slide-content p {
+                font-size: 1.1rem;
+            }
+            .promo h2 {
+                font-size: 1.8rem;
+            }
+            .promo p {
+                font-size: 1rem;
+            }
+            .exam-title {
+                font-size: 1.5rem;
+            }
+            .exam-grid {
+                grid-template-columns: 1fr;
+            }
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            .quiz-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .quiz button {
+                width: 100%;
+                max-width: 300px;
+            }
+            .nav {
+                font-size: 20px;
+                padding: 10px 15px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .registration-container {
+                padding: 25px;
+            }
+            .contact-buttons {
+                flex-direction: column;
+            }
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        .responsive-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+</style>
+</head>
+
+<body>
+    <div class="app">
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/919871992632?text=Hello%20Studykeeda%20Hub!%20I%20want%20to%20know%20more%20about%20courses" class="floating-whatsapp" target="_blank" title="Chat on WhatsApp">
+            📱
+        </a>
+
+        <!-- Menu Toggle -->
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#courses" onclick="closeMenu()">Courses</a>
+            <a href="#registration" onclick="closeMenu()">Registration</a>
+            <a href="#videos" onclick="closeMenu()">Videos</a>
+            <a href="#quiz" onclick="closeMenu()">Quiz</a>
+        </div>
+
+        <!-- Hero Slider -->
+        <div class="hero">
+            <div class="slider">
+                <div class="slide active" style="background-image: url('https://images.pexels.com/photos/35545154/pexels-photo-35545154.jpeg?auto=compress&cs=tinysrgb&w=1920');">
+                    <div class="slide-content">
+                        <h1>Welcome to Studykeeda Hub</h1>
+                        <p>Master concepts with videos, courses, and quizzes!</p>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.pexels.com/photos/35531445/pexels-photo-35531445.jpeg?auto=compress&cs=tinysrgb&w=1920');">
+                    <div class="slide-content">
+                        <h1>JEE Preparation</h1>
+                        <p>Top-notch physics and math lessons.</p>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1920');">
+                    <div class="slide-content">
+                        <h1>NEET Quizzes</h1>
+                        <p>Test your knowledge now!</p>
+                    </div>
+                </div>
+            </div>
+            <button class="nav left" onclick="changeSlide(-1)">❮</button>
+            <button class="nav right" onclick="changeSlide(1)">❯</button>
+
+            <!-- Slide Indicators -->
+            <div class="slide-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+
+        <!-- Promo Section -->
+        <div class="promo">
+            <h2>Studykeeda is preparing students for 10+ exam categories.</h2>
+            <p>Scroll down to find the one you are preparing for.</p>
+            <button onclick="scrollToExams()">Scroll Down ↓</button>
+        </div>
+
+        <!-- Exam Categories Section -->
+        <section class="exam-section" id="exam-section">
+            <div class="exam-title">
+                Studykeeda is preparing students for 10+ exam categories.<br> Scroll down to find the one you are preparing for
+            </div>
+
+            <div class="exam-grid">
+                <div class="exam-card">
+                    <h3>NEET</h3>
+                    <div class="exam-tags">
+                        <span>Class 11</span>
+                        <span>Class 12</span>
+                        <span>Dropper</span>
+                    </div>
+                    <a href="#registration" class="exam-btn">Explore Category →</a>
+                    <div class="exam-icon">⚕️</div>
+                </div>
+
+                <div class="exam-card">
+                    <h3>IIT JEE</h3>
+                    <div class="exam-tags">
+                        <span>Class 11</span>
+                        <span>Class 12</span>
+                        <span>Dropper</span>
+                    </div>
+                    <a href="#registration" class="exam-btn">Explore Category →</a>
+                    <div class="exam-icon">⚛️</div>
+                </div>
+
+                <div class="exam-card">
+                    <h3>Pre Foundation</h3>
+                    <a href="#registration" class="exam-btn">Explore Category →</a>
+                    <div class="exam-icon">🤖</div>
+                </div>
+
+                <div class="exam-card">
+                    <h3>School Boards</h3>
+                    <div class="exam-tags">
+                        <span>CBSE</span>
+                        <span>ICSE</span>
+                        <span>UP Board</span>
+                    </div>
+                    <a href="#registration" class="exam-btn">Explore Category →</a>
+                    <div class="exam-icon">🎒</div>
+                </div>
+
+                <div class="exam-card">
+                    <h3>UPSC</h3>
+                    <a href="#registration" class="exam-btn">Explore Category →</a>
+                    <div class="exam-icon">👥</div>
+                </div>
+
+                <div class="exam-card">
+                    <h3>Govt Job Exams</h3>
+                    <div class="exam-tags">
+                        <span>SSC</span>
+                        <span>Banking</span>
+                        <span>Teaching</span>
+                    </div>
+                    <a href="#registration" class="exam-btn">Explore Category →</a>
+                    <div class="exam-icon">🏛️</div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <!-- Featured Courses Section -->
+            <section id="courses" class="section">
+                <h2>Featured Courses</h2>
+                <div class="course-grid">
+                    <div class="course">
+                        <img src="Img/img2.png" alt="Software Training" class="responsive-img">
+                        <h3>Computer Courses</h3>
+                        <p>Master tools like MS Office, Adobe Suite, and more for creative and professional work.</p>
+                        <a href="#registration">Enroll Now</a>
+                    </div>
+                    <div class="course">
+                        <img src="Img/img3.png" alt="Hardware & Networking" class="responsive-img">
+                        <h3>Hardware & Networking</h3>
+                        <p>Computer assembling, troubleshooting, LAN/WAN, router configuration aur basic networking skills.</p>
+                        <a href="#registration">Enroll Now</a>
+                    </div>
+                    <div class="course">
+                        <img src="Img/img1.jpg" alt="Computer Courses" class="responsive-img">
+                        <h3> Software Training</h3>
+                        <p>From basics to advanced programming in Python, Html, Css, JavaScript, Php, C++, Java, and more.</p>
+                        <a href="#registration">Enroll Now</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Video Lectures Section -->
+            <section id="videos" class="section">
+                <h2>Video Lectures</h2>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/9KH9F9CgVtY?si=kueF0PQVhuQxWG9v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <p class="video-description">Watch engaging video lectures from top educators!</p>
+            </section>
+
+            <!-- Quick Quiz Section -->
+            <section id="quiz" class="section quiz">
+                <h2>Quick Quiz</h2>
+                <p id="question">What is the acceleration due to gravity on Earth?</p>
+                <div class="quiz-buttons">
+                    <button onclick="checkAnswer('9.8')">9.8 m/s²</button>
+                    <button onclick="checkAnswer('10')">10 m/s²</button>
+                    <button onclick="checkAnswer('8')">8 m/s²</button>
+                </div>
+                <p id="result" class="quiz-result hidden"></p>
+            </section>
+        </div>
+        <!-- Registration Form Section -->
+        <section class="registration-section" id="registration">
+            <div class="registration-container">
+                <h2>📚 Register Now</h2>
+                <p>Join thousands of students and start your learning journey today!</p>
+
+                <form id="registrationForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="example@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 9990423151" pattern="[0-9+\s-]+">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">Select Course *</label>
+                        <select id="course" name="course" required>
+                            <option value="">-- Choose Course --</option>
+                            <option value="neet">NEET Preparation</option>
+                            <option value="iit-jee">IIT JEE Preparation</option>
+                            <option value="pre-foundation">Pre Foundation</option>
+                            <option value="school-boards">School Boards (CBSE/ICSE)</option>
+                            <option value="upsc">UPSC</option>
+                            <option value="govt-jobs">Government Job Exams</option>
+                            <option value="software">Software Training</option>
+                            <option value="computer">Computer Courses</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message (Optional)</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your learning goals..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Registration 🚀</button>
+                </form>
+
+                <div class="contact-buttons">
+                    <a href="https://wa.me/918076128426?text=Hello!%20I%20want%20to%20register%20for%20courses" class="contact-btn whatsapp-btn" target="_blank">
+                        📱 WhatsApp Us
+                    </a>
+                    <a href="sms:08076128426?body=Hello%20Studykeeda!%20I%20want%20to%20know%20more" class="contact-btn sms-btn">
+                        💬 Send SMS
+                    </a>
+                </div>
+
+                <div id="successMessage" class="success-message">
+                    ✅ Registration Successful! We'll contact you soon.
+                </div>
+            </div>
+        </section>
+        <div style="max-width:100%; text-align:center;">
+            <h2>📍 StudyKeeda Location</h2>
+
+            <iframe src="https://www.google.com/maps?q=G-18+Gali+No.+16+Rajapuri+Som+Bazar+Road+Uttam+Nagar+New+Delhi&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+  </iframe>
+
+            <p style="margin-top:10px; font-size:16px;">
+                <strong>StudyKeeda</strong><br> G-18, Gali No. 16, Som Bazar Road<br> Rajapuri, Uttam Nagar New Delhi – 110059
+            </p>
+        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Studykeeda Hub</h3>
+                    <p>Learn • Grow • Succeed</p>
+                <P>Create BY FAIZAN</P>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#courses">Courses</a>
+                    <a href="#registration">Registration</a>
+                    <a href="#videos">Videos</a>
+                    <a href="#quiz">Quiz</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@studykeeda.com</p>
+                    <p>Phone: +91 8076128426</p>
+                    <p>WhatsApp: +91 8076128426</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Studykeeda Hub. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            indicators[currentSlide].classList.remove('active');
+
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            indicators[currentSlide].classList.remove('active');
+
+            currentSlide = index;
+
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('active');
+        }
+
+        function scrollToExams() {
+            document.getElementById('exam-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function checkAnswer(answer) {
+            const result = document.getElementById('result');
+            result.classList.remove('hidden');
+
+            if (answer === '9.8') {
+                result.textContent = '✅ Correct! Gravity on Earth is 9.8 m/s²';
+                result.style.color = '#27ae60';
+            } else {
+                result.textContent = '❌ Wrong! The correct answer is 9.8 m/s²';
+                result.style.color = '#e74c3c';
+            }
+
+            setTimeout(() => {
+                result.classList.add('hidden');
+            }, 3000);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            // Get form data
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+            const course = formData.get('course');
+            const message = formData.get('message');
+
+            // Show success message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+
+            // Create WhatsApp message
+            const whatsappMessage = `Hello! I'm ${name}. I want to register for ${course}. Phone: ${phone}, Email: ${email}. ${message ? 'Message: ' + message : ''}`;
+            const whatsappURL = `https://wa.me/919871992632?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // Reset form
+            event.target.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 5000);
+
+            // Optional: Open WhatsApp
+            setTimeout(() => {
+                if (confirm('Would you like to send this information via WhatsApp?')) {
+                    window.open(whatsappURL, '_blank');
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
