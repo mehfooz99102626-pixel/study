@@ -2,10 +2,24 @@
   <head>
     <title>Neet class 11th and 12th </title>
       <style>
-        .gamma-embed {
+     .gamma-wrapper {
+  max-width: 900px;
+  margin: auto;
+}
+
+.fullscreen-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.gamma-embed {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 ratio */
+  padding-top: 56.25%; /* Auto height (16:9) */
 }
 
 .gamma-embed iframe {
@@ -16,13 +30,28 @@
   height: 100%;
   border: none;
 }
-
       </style>
   </head>
   <body>
     <h1>NEET CLASS 11 ROADMAP </h1>
-    <div class="gamma-embed">
+    <div class="gamma-wrapper">
+  <button class="fullscreen-btn" onclick="openFullscreen()">⛶ Fullscreen</button>
+
+    <div class="gamma-embed" id="gammaBox">
     <iframe src="https://gamma.app/embed/7p23djemip7tijo" style="width: 700px; max-width: 100%; height: 450px" allow="fullscreen" title="Your NEET Journey: Paving the Path to Medical Success"></iframe>
     </div>
+    <script>
+      function openFullscreen() {
+  const elem = document.getElementById("gammaBox");
+
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  }
+}
+    </script>
   </body>
 </htlm>
