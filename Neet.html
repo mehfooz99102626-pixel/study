@@ -10,6 +10,50 @@
         .qa { margin-top: 20px; }
         .mcq { margin-top: 20px; }
         .mcq input { margin-right: 10px; }
+         body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .question-box {
+        background: #ffffff;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .question {
+        font-weight: bold;
+        cursor: pointer;
+        color: #1a5276;
+    }
+
+    .answer {
+        display: none;
+        margin-top: 10px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 14px;
+        color: #555;
+    }
     </style>
 </head>
 <body>
@@ -20,14 +64,6 @@
         <div class="section">
             <h2>Chapter 1: Introduction</h2>
            <iframe src="https://gamma.app/embed/7p23djemip7tijo" style="width: 700px; max-width: 100%; height: 450px" allow="fullscreen" title="Your NEET Journey: Paving the Path to Medical Success"></iframe>
-        </div>
-        
-        <!-- Section 2: Q&A -->
-        <div class="section qa">
-            <h2>Questions & Answers</h2>
-            <p><strong>Q1:</strong> What is the main topic?</p>
-            <p><strong>A:</strong> The main topic is [your answer].</p>
-            <!-- Add more Q&A pairs -->
         </div>
         
         <!-- Section 3: MCQ -->
@@ -43,7 +79,96 @@
             <p id="result"></p>
         </div>
     </div>
-    
+    <h1>Biology – Class 11<br>The Living World (NCERT Based)</h1>
+
+<div class="container">
+
+    <!-- Q1 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q1. What is meant by “Living World” according to NCERT?
+        </div>
+        <div class="answer">
+            According to NCERT, the living world includes all organisms that show characteristics of life such as growth, reproduction, metabolism and responsiveness. It includes a vast diversity of organisms ranging from microscopic bacteria to complex multicellular plants and animals. The study of the living world involves identification, classification, nomenclature and understanding evolutionary relationships, which helps in organizing biological knowledge systematically.
+        </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q2. Define biodiversity. Why is it important?
+        </div>
+        <div class="answer">
+            Biodiversity refers to the total number and variety of living organisms present on Earth. According to NCERT, it includes diversity at genetic, species and ecosystem levels. Biodiversity is important because it maintains ecological balance, provides food, medicines and raw materials, and ensures stability of ecosystems. High biodiversity improves adaptability of organisms to environmental changes.
+        </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q3. Explain the process of identification of living organisms.
+        </div>
+        <div class="answer">
+            Identification is the process of recognizing and determining the correct identity of an organism. According to NCERT, it involves comparing the organism’s characteristics with already described organisms in taxonomic literature. Identification helps in assigning correct scientific names and placing organisms in proper groups for study, research and conservation.
+        </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q4. What is nomenclature? Why is it necessary?
+        </div>
+        <div class="answer">
+            Nomenclature is the system of assigning scientific names to organisms. It is necessary because common names vary from place to place and language to language. According to NCERT, scientific nomenclature provides a universal system accepted worldwide, ensuring clarity and avoiding confusion in scientific communication.
+        </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q5. Describe binomial nomenclature.
+        </div>
+        <div class="answer">
+            Binomial nomenclature is the system of naming organisms using two words, proposed by Carolus Linnaeus. According to NCERT, the first word represents the genus and the second represents the species. Scientific names are written in italics or underlined when handwritten, ensuring universal and uniform identification of organisms.
+        </div>
+    </div>
+
+    <!-- Q21 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q21. Define taxonomy.
+        </div>
+        <div class="answer">
+            Taxonomy is the branch of biology that deals with identification, nomenclature and classification of organisms. According to NCERT, taxonomy helps in organizing the vast diversity of living organisms into systematic groups, making their study easier and more scientific.
+        </div>
+    </div>
+
+    <!-- Q24 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q24. What are taxonomic aids?
+        </div>
+        <div class="answer">
+            Taxonomic aids are tools that help in identification, classification and naming of organisms. According to NCERT, examples include herbarium, botanical gardens, museums, zoological parks, keys, flora and manuals. These aids provide reference material for accurate study of organisms.
+        </div>
+    </div>
+
+    <!-- Q29 -->
+    <div class="question-box">
+        <div class="question" onclick="toggleAnswer(this)">
+            Q29. What are taxonomic keys?
+        </div>
+        <div class="answer">
+            Taxonomic keys are tools used to identify organisms based on contrasting characteristics. According to NCERT, they consist of paired statements called couplets. By choosing the correct option at each step, the organism can be accurately identified.
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    NCERT • NEET Biology • Class 11
+</div>
+
     <script>
         function checkAnswers() {
             const q1 = document.querySelector('input[name="q1"]:checked').value;
@@ -51,6 +176,14 @@
             if (q1 === '4') score++;
             document.getElementById('result').innerText = `Score: ${score}/1`;
         }
+        function toggleAnswer(element) {
+    const answer = element.nextElementSibling;
+    if (answer.style.display === "block") {
+        answer.style.display = "none";
+    } else {
+        answer.style.display = "block";
+    }
+}
     </script>
 </body>
 </html>
