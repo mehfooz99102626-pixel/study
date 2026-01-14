@@ -148,20 +148,11 @@
             Taxonomic keys are tools used to identify organisms based on contrasting characteristics. According to NCERT, they consist of paired statements called couplets. By choosing the correct option at each step, the organism can be accurately identified.
         </div>
     </div>
-
 </div>
-
 <div class="footer">
     NCERT • NEET Biology • Class 11
 </div>
-
     <script>
-        function checkAnswers() {
-            const q1 = document.querySelector('input[name="q1"]:checked').value;
-            let score = 0;
-            if (q1 === '4') score++;
-            document.getElementById('result').innerText = `Score: ${score}/1`;
-        }
         function toggleAnswer(element) {
     const answer = element.nextElementSibling;
     if (answer.style.display === "block") {
