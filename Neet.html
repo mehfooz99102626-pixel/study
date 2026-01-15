@@ -203,6 +203,24 @@ body.dark .mcq{
 h2{
   margin:10px 0;
 }
+/* ===== MCQ RESULT HIGHLIGHT ===== */
+.mcq.correct{
+  border:2px solid #22c55e;
+  background:#ecfdf5;
+}
+.mcq.wrong{
+  border:2px solid #ef4444;
+  background:#fef2f2;
+}
+
+.score-box{
+  margin:15px 0;
+  padding:12px;
+  background:#3f51b5;
+  color:#fff;
+  border-radius:8px;
+  font-weight:bold;
+}
 
     </style>
 </head>
@@ -339,10 +357,16 @@ h2{
 <div id="biology-mcq"></div>
 </div>
 </div>
+<div id="physics-score" class="score-box">Score: 0</div>
+<div id="chemistry-score" class="score-box">Score: 0</div>
+<div id="biology-score" class="score-box">Score: 0</div>
+<div id="physics">
+  <div id="physics-score" class="score-box">Score: 0</div>
+  <div id="physics-mcq"></div>
+</div>
 <div class="footer">
     NCERT • NEET Biology • Class 11
 </div>
-
     <script>
         function toggleAnswer(element) {
     const answer = element.nextElementSibling;
@@ -442,7 +466,52 @@ function loadMCQs(subject,chapter){
   });
   document.getElementById(subject+"-mcq").innerHTML = html;
 }
+let scores = {
+  physics:0,
+  chemistry:0,
+  biology:0
+};
 
+function loadMCQs(subject,chapter){
+  const data = mcqData[subject][chapter];
+  scores[subject]=0;
+
+  let html="";
+  data.forEach((q,i)=>{
+    html+=`
+    <div class="mcq" data-answer="${q.a}">
+      <p>${i+1}. ${q.q}</p>
+      ${q.o.map((op,j)=>`
+        <label>
+          <input type="radio" name="${subject}-q${i}" 
+          onclick="checkAnswer(this,${j},'${subject}')">
+          ${op}
+        </label>
+      `).join("")}
+    </div>`;
+  });
+
+  document.getElementById(subject+"-mcq").innerHTML = html;
+  document.getElementById(subject+"-score").innerText = "Score: 0";
+}
+
+function checkAnswer(input,selected,subject){
+  const mcq = input.closest(".mcq");
+  if(mcq.classList.contains("done")) return;
+
+  mcq.classList.add("done");
+  const correct = mcq.dataset.answer;
+
+  if(selected == correct){
+    mcq.classList.add("correct");
+    scores[subject]++;
+  }else{
+    mcq.classList.add("wrong");
+  }
+
+  document.getElementById(subject+"-score").innerText =
+    "Score: " + scores[subject];
+}
     </script>
 </body>
 </html>
