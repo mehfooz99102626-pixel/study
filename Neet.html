@@ -149,6 +149,49 @@
 <div class="footer">
     NCERT • NEET Biology • Class 11
 </div>
+
+    <header>
+  <h1>📘 NEET Book (Chapter-wise MCQs)</h1>
+  <div class="toggle" onclick="toggleDark()">🌙 Dark Mode</div>
+</header>
+
+<div class="book">
+
+<div class="tabs">
+  <button class="tab active" onclick="openSubject('physics')">Physics</button>
+  <button class="tab" onclick="openSubject('chemistry')">Chemistry</button>
+  <button class="tab" onclick="openSubject('biology')">Biology</button>
+</div>
+
+<!-- PHYSICS -->
+<div id="physics" class="content" style="display:block;">
+<h2>📐 Physics Chapters</h2>
+<div class="chapter" onclick="loadMCQs('physics','mechanics')">Mechanics</div>
+<div class="chapter" onclick="loadMCQs('physics','electro')">Electrodynamics</div>
+<div class="chapter" onclick="loadMCQs('physics','modern')">Modern Physics</div>
+<div id="physics-mcq"></div>
+</div>
+
+<!-- CHEMISTRY -->
+<div id="chemistry" class="content">
+<h2>⚗️ Chemistry Chapters</h2>
+<div class="chapter" onclick="loadMCQs('chemistry','physical')">Physical Chemistry</div>
+<div class="chapter" onclick="loadMCQs('chemistry','organic')">Organic Chemistry</div>
+<div class="chapter" onclick="loadMCQs('chemistry','inorganic')">Inorganic Chemistry</div>
+<div id="chemistry-mcq"></div>
+</div>
+
+<!-- BIOLOGY -->
+<div id="biology" class="content">
+<h2>🧬 Biology Chapters</h2>
+<div class="chapter" onclick="loadMCQs('biology','botany')">Botany</div>
+<div class="chapter" onclick="loadMCQs('biology','zoology')">Zoology</div>
+<div id="biology-mcq"></div>
+</div>
+
+</div>
+
+
     <script>
         function toggleAnswer(element) {
     const answer = element.nextElementSibling;
@@ -158,6 +201,97 @@
         answer.style.display = "block";
     }
 }
+        function openSubject(sub){
+  document.querySelectorAll(".content").forEach(c=>c.style.display="none");
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.getElementById(sub).style.display="block";
+  event.target.classList.add("active");
+}
+
+function toggleDark(){document.body.classList.toggle("dark");}
+
+/* ===== MCQ DATA (3 OPTIONS, 10+ READY STRUCTURE) ===== */
+const mcqData = {
+physics:{
+mechanics:[
+{q:"Force ka SI unit?",o:["Newton","Joule","Watt"],a:0},
+{q:"Speed ki unit?",o:["m/s","kg","Joule"],a:0},
+{q:"Work ka unit?",o:["Joule","Newton","Ampere"],a:0},
+{q:"Mass ki unit?",o:["kg","m","s"],a:0},
+{q:"Acceleration unit?",o:["m/s²","m","kg"],a:0}
+],
+electro:[
+{q:"Current unit?",o:["Ampere","Volt","Ohm"],a:0},
+{q:"Voltage unit?",o:["Volt","Ampere","Watt"],a:0},
+{q:"Resistance unit?",o:["Ohm","Volt","Joule"],a:0},
+{q:"Battery store karta hai?",o:["Energy","Current","Power"],a:0},
+{q:"Electric charge unit?",o:["Coulomb","Ampere","Volt"],a:0}
+],
+modern:[
+{q:"Photon related hai?",o:["Light","Sound","Heat"],a:0},
+{q:"E=mc² kisne diya?",o:["Einstein","Newton","Bohr"],a:0},
+{q:"X-rays discover?",o:["Roentgen","Einstein","Curie"],a:0},
+{q:"Nuclear energy kis se?",o:["Fission","Friction","Motion"],a:0},
+{q:"Electron discover?",o:["J.J Thomson","Rutherford","Bohr"],a:0}
+]
+},
+chemistry:{
+physical:[
+{q:"pH < 7?",o:["Acidic","Basic","Neutral"],a:0},
+{q:"Gas law related?",o:["Pressure","Color","Smell"],a:0},
+{q:"Mole concept unit?",o:["Mol","Gram","Liter"],a:0},
+{q:"Heat unit?",o:["Joule","Watt","Kelvin"],a:0},
+{q:"STP temp?",o:["0°C","25°C","100°C"],a:0}
+],
+organic:[
+{q:"Organic study of?",o:["Carbon","Metal","Salt"],a:0},
+{q:"CH₄?",o:["Methane","Ethane","Propane"],a:0},
+{q:"C₂H₆?",o:["Ethane","Methane","Butane"],a:0},
+{q:"Alcohol group?",o:["OH","CO","NH"],a:0},
+{q:"Benzene formula?",o:["C6H6","C6H12","C5H5"],a:0}
+],
+inorganic:[
+{q:"NaCl kya?",o:["Salt","Acid","Base"],a:0},
+{q:"HCl kya?",o:["Acid","Salt","Base"],a:0},
+{q:"NaOH kya?",o:["Base","Salt","Acid"],a:0},
+{q:"Periodic table banaya?",o:["Mendeleev","Bohr","Newton"],a:0},
+{q:"Oxygen symbol?",o:["O","Ox","Og"],a:0}
+]
+},
+biology:{
+botany:[
+{q:"Photosynthesis hota?",o:["Chloroplast","Mitochondria","Nucleus"],a:0},
+{q:"Root ka work?",o:["Absorption","Respiration","Food"],a:0},
+{q:"Leaf color green kyon?",o:["Chlorophyll","Water","Root"],a:0},
+{q:"Plant cell wall?",o:["Cellulose","Protein","Fat"],a:0},
+{q:"Seed develop?",o:["Flower","Root","Leaf"],a:0}
+],
+zoology:[
+{q:"Heart chambers?",o:["4","2","3"],a:0},
+{q:"Blood red kyon?",o:["Hemoglobin","Plasma","WBC"],a:0},
+{q:"Human brain part?",o:["Cerebrum","Root","Leaf"],a:0},
+{q:"Breathing organ?",o:["Lungs","Heart","Liver"],a:0},
+{q:"Digest food?",o:["Stomach","Kidney","Lungs"],a:0}
+]
+}
+};
+
+/* ===== LOAD MCQs ===== */
+function loadMCQs(subject,chapter){
+  const data = mcqData[subject][chapter];
+  let html="";
+  data.forEach((q,i)=>{
+    html+=`
+    <div class="mcq">
+      <p>${i+1}. ${q.q}</p>
+      ${q.o.map((op,j)=>`
+        <label><input type="radio" name="q${i}" value="${j}"> ${op}</label><br>
+      `).join("")}
+    </div>`;
+  });
+  document.getElementById(subject+"-mcq").innerHTML = html;
+}
+
     </script>
 </body>
 </html>
