@@ -215,12 +215,33 @@ h2{
 
 .score-box{
   margin:15px 0;
-  padding:12px;
+  padding:15px;
   background:#3f51b5;
   color:#fff;
-  border-radius:8px;
+  border-radius:10px;
   font-weight:bold;
 }
+
+.progress{
+  height:10px;
+  background:#c7d2fe;
+  border-radius:6px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#22c55e;
+  transition:0.3s;
+}
+
+.score-text{
+  margin-top:6px;
+  font-size:14px;
+}
+
 
     </style>
 </head>
@@ -357,13 +378,24 @@ h2{
 <div id="biology-mcq"></div>
 </div>
 </div>
-<div id="physics-score" class="score-box">Score: 0</div>
-<div id="chemistry-score" class="score-box">Score: 0</div>
-<div id="biology-score" class="score-box">Score: 0</div>
-<div id="physics">
-  <div id="physics-score" class="score-box">Score: 0</div>
-  <div id="physics-mcq"></div>
+<div id="physics-score" class="score-box">
+  Physics Score: 0/0 (0%)
+  <div class="progress"><div class="progress-bar" id="physics-bar"></div></div>
+  <div class="score-text" id="physics-text"></div>
 </div>
+
+<div id="chemistry-score" class="score-box">
+  Chemistry Score: 0/0 (0%)
+  <div class="progress"><div class="progress-bar" id="chemistry-bar"></div></div>
+  <div class="score-text" id="chemistry-text"></div>
+</div>
+
+<div id="biology-score" class="score-box">
+  Biology Score: 0/0 (0%)
+  <div class="progress"><div class="progress-bar" id="biology-bar"></div></div>
+  <div class="score-text" id="biology-text"></div>
+</div>
+
 <div class="footer">
     NCERT • NEET Biology • Class 11
 </div>
@@ -509,9 +541,66 @@ function checkAnswer(input,selected,subject){
     mcq.classList.add("wrong");
   }
 
-  document.getElementById(subject+"-score").innerText =
-    "Score: " + scores[subject];
+let scores = { physics:0, chemistry:0, biology:0 };
+let totals = { physics:0, chemistry:0, biology:0 };
+
+function loadMCQs(subject,chapter){
+  const data = mcqData[subject][chapter];
+  scores[subject]=0;
+  totals[subject]=data.length;
+
+  let html="";
+  data.forEach((q,i)=>{
+    html+=`
+    <div class="mcq" data-answer="${q.a}">
+      <p>${i+1}. ${q.q}</p>
+      ${q.o.map((op,j)=>`
+        <label>
+          <input type="radio" name="${subject}-q${i}"
+          onclick="checkAnswer(this,${j},'${subject}')">
+          ${op}
+        </label>
+      `).join("")}
+    </div>`;
+  });
+
+  document.getElementById(subject+"-mcq").innerHTML = html;
+  updateScore(subject);
 }
+
+function checkAnswer(input,selected,subject){
+  const mcq = input.closest(".mcq");
+  if(mcq.classList.contains("done")) return;
+
+  mcq.classList.add("done");
+  const correct = mcq.dataset.answer;
+
+  if(selected == correct){
+    mcq.classList.add("correct");
+    scores[subject]++;
+  }else{
+    mcq.classList.add("wrong");
+  }
+
+  updateScore(subject);
+}
+
+function updateScore(subject){
+  let percent = Math.round((scores[subject]/totals[subject])*100) || 0;
+
+  document.getElementById(subject+"-score").childNodes[0].nodeValue =
+    `${subject.toUpperCase()} Score: ${scores[subject]}/${totals[subject]} (${percent}%) `;
+
+  document.getElementById(subject+"-bar").style.width = percent+"%";
+
+  let msg = "";
+  if(percent >= 80) msg="🔥 Excellent! NEET Ready";
+  else if(percent >= 50) msg="👍 Good, Practice More";
+  else msg="⚠️ Revise NCERT";
+
+  document.getElementById(subject+"-text").innerText = msg;
+}
+
     </script>
 </body>
 </html>
