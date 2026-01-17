@@ -282,41 +282,114 @@ function openSubject(id,btn){
   btn.classList.add("active");
 }
 
-/* ===== FULL MCQ DATA ===== */
+/* ===== FULL MCQ DATA (90 MCQs) ===== */
 const mcqData = {
+
 physics:{
 mechanics:[
 {q:"Force unit?",o:["Newton","Joule","Watt"],a:0},
-{q:"Speed unit?",o:["m/s","kg","J"],a:0}
+{q:"Speed unit?",o:["m/s","kg","J"],a:0},
+{q:"Acceleration unit?",o:["m/s²","m","kg"],a:0},
+{q:"Mass unit?",o:["kg","g","m"],a:0},
+{q:"Work unit?",o:["Joule","Newton","Ampere"],a:0},
+{q:"Energy unit?",o:["Joule","Watt","Volt"],a:0},
+{q:"Power unit?",o:["Watt","Joule","Ampere"],a:0},
+{q:"Momentum formula?",o:["mv","ma","v/t"],a:0},
+{q:"Density formula?",o:["m/v","v/m","m×v"],a:0},
+{q:"Pressure unit?",o:["Pascal","Bar","Newton"],a:0}
 ],
 electro:[
-{q:"Current unit?",o:["Ampere","Volt","Ohm"],a:0}
+{q:"Current unit?",o:["Ampere","Volt","Ohm"],a:0},
+{q:"Voltage unit?",o:["Volt","Ampere","Watt"],a:0},
+{q:"Resistance unit?",o:["Ohm","Volt","Joule"],a:0},
+{q:"Electric charge unit?",o:["Coulomb","Ampere","Volt"],a:0},
+{q:"Battery stores?",o:["Energy","Current","Power"],a:0},
+{q:"Fuse works on?",o:["Heating effect","Magnetic","Chemical"],a:0},
+{q:"AC frequency in India?",o:["50 Hz","60 Hz","100 Hz"],a:0},
+{q:"Unit of electric power?",o:["Watt","Volt","Ampere"],a:0},
+{q:"Ohm's law formula?",o:["V=IR","P=VI","I=VR"],a:0},
+{q:"Electric field unit?",o:["N/C","J","W"],a:0}
 ],
 modern:[
-{q:"E=mc² by?",o:["Einstein","Newton","Bohr"],a:0}
+{q:"E = mc² given by?",o:["Einstein","Newton","Bohr"],a:0},
+{q:"Photon related to?",o:["Light","Sound","Heat"],a:0},
+{q:"X-rays discovered by?",o:["Roentgen","Curie","Bohr"],a:0},
+{q:"Nuclear energy from?",o:["Fission","Friction","Motion"],a:0},
+{q:"Electron discovered by?",o:["J.J Thomson","Rutherford","Bohr"],a:0},
+{q:"Alpha particles are?",o:["Helium nuclei","Electrons","Protons"],a:0},
+{q:"Beta rays are?",o:["Electrons","Protons","Neutrons"],a:0},
+{q:"Gamma rays are?",o:["Electromagnetic","Particles","Sound"],a:0},
+{q:"Photoelectric effect related to?",o:["Light","Heat","Sound"],a:0},
+{q:"SI unit of radioactivity?",o:["Becquerel","Curie","Tesla"],a:0}
 ]
 },
+
 chemistry:{
 physical:[
-{q:"pH < 7?",o:["Acidic","Basic","Neutral"],a:0}
+{q:"pH < 7 solution is?",o:["Acidic","Basic","Neutral"],a:0},
+{q:"STP temperature?",o:["0°C","25°C","100°C"],a:0},
+{q:"Heat unit?",o:["Joule","Watt","Kelvin"],a:0},
+{q:"Mole unit?",o:["Mol","Gram","Liter"],a:0},
+{q:"Gas law related to?",o:["Pressure","Color","Taste"],a:0},
+{q:"Avogadro number?",o:["6.022×10²³","10⁶","10³"],a:0},
+{q:"Density unit?",o:["kg/m³","kg","m³"],a:0},
+{q:"SI unit of temperature?",o:["Kelvin","Celsius","Fahrenheit"],a:0},
+{q:"Boyle's law relates?",o:["Pressure & volume","Temp & volume","Pressure & temp"],a:0},
+{q:"Latent heat unit?",o:["J/kg","J","kg"],a:0}
 ],
 organic:[
-{q:"CH4 name?",o:["Methane","Ethane","Propane"],a:0}
+{q:"CH₄ is called?",o:["Methane","Ethane","Propane"],a:0},
+{q:"C₂H₆ is?",o:["Ethane","Methane","Butane"],a:0},
+{q:"Alcohol group?",o:["OH","CO","NH"],a:0},
+{q:"Benzene formula?",o:["C6H6","C6H12","C5H5"],a:0},
+{q:"Organic chemistry studies?",o:["Carbon","Metal","Salt"],a:0},
+{q:"Ethene formula?",o:["C2H4","C2H6","CH4"],a:0},
+{q:"Saturated hydrocarbon?",o:["Alkane","Alkene","Alkyne"],a:0},
+{q:"Acetic acid formula?",o:["CH3COOH","HCOOH","C2H5OH"],a:0},
+{q:"Homologous series differ by?",o:["CH2","CO","OH"],a:0},
+{q:"Ethanol formula?",o:["C2H5OH","CH3OH","C3H7OH"],a:0}
 ],
 inorganic:[
-{q:"NaCl is?",o:["Salt","Acid","Base"],a:0}
+{q:"NaCl is?",o:["Salt","Acid","Base"],a:0},
+{q:"HCl is?",o:["Acid","Base","Salt"],a:0},
+{q:"NaOH is?",o:["Base","Acid","Salt"],a:0},
+{q:"Periodic table by?",o:["Mendeleev","Newton","Bohr"],a:0},
+{q:"Oxygen symbol?",o:["O","Ox","Og"],a:0},
+{q:"Most reactive metal?",o:["Potassium","Iron","Copper"],a:0},
+{q:"Rust is?",o:["Iron oxide","Copper oxide","Zinc oxide"],a:0},
+{q:"pH of pure water?",o:["7","5","9"],a:0},
+{q:"Atomic number shows?",o:["Protons","Neutrons","Electrons"],a:0},
+{q:"Noble gases group?",o:["18","17","16"],a:0}
 ]
 },
+
 biology:{
 botany:[
-{q:"Photosynthesis in?",o:["Chloroplast","Mitochondria","Nucleus"],a:0}
+{q:"Photosynthesis occurs in?",o:["Chloroplast","Mitochondria","Nucleus"],a:0},
+{q:"Green colour of leaf due to?",o:["Chlorophyll","Carotene","Xanthophyll"],a:0},
+{q:"Plant cell wall made of?",o:["Cellulose","Protein","Fat"],a:0},
+{q:"Transpiration occurs in?",o:["Leaf","Root","Stem"],a:0},
+{q:"Seed develops from?",o:["Ovule","Root","Leaf"],a:0},
+{q:"Xylem transports?",o:["Water","Food","Hormone"],a:0},
+{q:"Phloem transports?",o:["Food","Water","Minerals"],a:0},
+{q:"Root hair function?",o:["Absorption","Respiration","Support"],a:0},
+{q:"Stomata help in?",o:["Gas exchange","Photosynthesis","Transport"],a:0},
+{q:"Plant hormone for growth?",o:["Auxin","Insulin","Adrenaline"],a:0}
 ],
 zoology:[
-{q:"Heart chambers?",o:["4","2","3"],a:0}
+{q:"Human heart chambers?",o:["4","2","3"],a:0},
+{q:"Breathing organ in humans?",o:["Lungs","Heart","Liver"],a:0},
+{q:"Blood red colour due to?",o:["Hemoglobin","Plasma","WBC"],a:0},
+{q:"Largest organ in body?",o:["Skin","Heart","Liver"],a:0},
+{q:"Digestive organ?",o:["Stomach","Kidney","Lungs"],a:0},
+{q:"Brain protected by?",o:["Skull","Ribs","Spine"],a:0},
+{q:"RBC lifespan?",o:["120 days","60 days","30 days"],a:0},
+{q:"Blood group discovered by?",o:["Landsteiner","Darwin","Pasteur"],a:0},
+{q:"Normal body temperature?",o:["37°C","35°C","39°C"],a:0},
+{q:"Vitamin D deficiency causes?",o:["Rickets","Scurvy","Beriberi"],a:0}
 ]
 }
 };
-
 /* ===== LOAD MCQs ===== */
 function loadMCQs(subject,chapter){
   const data = mcqData[subject][chapter];
