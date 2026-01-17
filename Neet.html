@@ -192,25 +192,247 @@ footer{
   header{flex-direction:column;gap:12px}
   .tabs{flex-direction:column}
 }
+  /* ================= SUPER PREMIUM NAVBAR ================= */
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+
+  padding:18px 9%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  /* glass + gradient */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(59,130,246,0.28),
+      rgba(139,92,246,0.28),
+      rgba(236,72,153,0.22)
+    );
+
+  backdrop-filter:blur(26px) saturate(180%);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+
+  border-bottom:1px solid rgba(255,255,255,0.28);
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+  transition:all .4s ease;
+}
+
+/* ================= LOGO ================= */
+.logo{
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:.8px;
+
+  background:linear-gradient(
+    90deg,
+    #3b82f6,
+    #8b5cf6,
+    #ec4899
+  );
+  background-size:300% auto;
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:logoGradient 6s linear infinite;
+}
+
+@keyframes logoGradient{
+  to{background-position:300% center;}
+}
+
+/* ================= NAV LINKS ================= */
+.nav-links{
+  display:flex;
+  gap:34px;
+}
+
+.nav-links a{
+  color:#f8fafc;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+  position:relative;
+  padding:6px 0;
+
+  transition:.35s ease;
+}
+
+/* glowing underline */
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-8px;
+
+  width:0;
+  height:3px;
+  border-radius:999px;
+
+  background:linear-gradient(
+    90deg,
+    #3b82f6,
+    #8b5cf6,
+    #ec4899
+  );
+
+  transform:translateX(-50%);
+  transition:.35s ease;
+}
+
+.nav-links a:hover{
+  color:#ffffff;
+  text-shadow:
+    0 0 10px rgba(139,92,246,.8),
+    0 0 30px rgba(236,72,153,.6);
+}
+
+.nav-links a:hover::after{
+  width:120%;
+}
+
+/* ================= RIGHT SIDE ================= */
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* dark mode button */
+.dark-btn{
+  border:none;
+  padding:8px 16px;
+  border-radius:999px;
+  cursor:pointer;
+
+  font-size:14px;
+  font-weight:700;
+  color:#fff;
+
+  background:linear-gradient(
+    135deg,
+    #3b82f6,
+    #8b5cf6
+  );
+
+  box-shadow:
+    0 12px 30px rgba(59,130,246,.5);
+
+  transition:.35s ease;
+}
+
+.dark-btn:hover{
+  transform:translateY(-2px) scale(1.06);
+
+  box-shadow:
+    0 0 25px rgba(139,92,246,.9),
+    0 0 60px rgba(236,72,153,.7);
+}
+
+/* ================= HAMBURGER ================= */
+.menu{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+  color:#fff;
+  transition:.3s;
+}
+
+.menu:hover{
+  transform:scale(1.2) rotate(8deg);
+  text-shadow:0 0 20px rgba(139,92,246,.9);
+}
+
+/* ================= MOBILE MENU ================= */
+@media(max-width:768px){
+  .nav-links{
+    position:absolute;
+    top:78px;
+    right:6%;
+
+    width:240px;
+    flex-direction:column;
+    gap:20px;
+
+    padding:22px;
+    border-radius:22px;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(15,23,42,0.96),
+        rgba(30,41,59,0.96)
+      );
+
+    backdrop-filter:blur(30px);
+    border:1px solid rgba(255,255,255,0.25);
+
+    box-shadow:0 45px 90px rgba(0,0,0,.7);
+
+    display:none;
+    animation:dropMenu .45s ease;
+  }
+
+  .nav-links.show{
+    display:flex;
+  }
+
+  @keyframes dropMenu{
+    from{
+      opacity:0;
+      transform:translateY(-25px) scale(.92);
+    }
+    to{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+  }
+
+  .menu{
+    display:block;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>📘 NEET Interactive Book</h1>
-  <div class="toggle" onclick="toggleDark()">🌙 Dark Mode</div>
-</header>
+
+<!-- NAVBAR YAHAN HOGA -->
+<nav class="navbar glass">
+  <div class="nav-left">
+    <span class="logo">📘 NEETBook</span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#roadmap">Roadmap</a>
+    <a href="#qa">Q&A</a>
+    <a href="#mcq">MCQs</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="dark-btn" onclick="toggleDark()">🌙</button>
+    <div class="menu" onclick="toggleMenu()">☰</div>
+  </div>
+</nav>
 
 <!-- ROADMAP -->
-<div class="container">
+<div class="container" id="roadmap">
   <h2 align="center">NEET ROADMAP</h2><br>
   <iframe src="https://gamma.app/embed/7p23djemip7tijo"
     style="width:100%;height:450px" allowfullscreen></iframe>
 </div>
 
 <!-- Q&A -->
-<div class="container">
+<div class="container" id="qa">
   <h2>Biology – The Living World</h2><br>
 
   <div class="question-box" onclick="toggleAnswer(this)">
@@ -363,8 +585,7 @@ footer{
 </div>
 
 <!-- BOOK + MCQ -->
-<div class="book">
-
+<div class="book" id="mcq">
 <div class="tabs">
   <button class="tab active" onclick="openSubject('physics',this)">Physics</button>
   <button class="tab" onclick="openSubject('chemistry',this)">Chemistry</button>
@@ -547,6 +768,9 @@ function check(input,sel){
   if(mcq.classList.contains("done")) return;
   mcq.classList.add("done");
   sel==mcq.dataset.a ? mcq.classList.add("correct") : mcq.classList.add("wrong");
+}
+  function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("show");
 }
 </script>
 
