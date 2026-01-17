@@ -1,434 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>NEET</title>
-    <style>
-        /* Basic styling for book layout */
-        .book { max-width: 800px; margin: auto; padding: 20px; }
-        .section { margin-bottom: 40px; }
-        .pdf-viewer { height: 600px; }
-        .qa { margin-top: 20px; }
-        .mcq { margin-top: 20px; }
-        .mcq input { margin-right: 10px; }
-         body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #f4f6f8;
-        margin: 0;
-        padding: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEET Interactive Book</title>
 
-    h1 {
-        text-align: center;
-        color: #2c3e50;
-    }
-
-    .container {
-        max-width: 900px;
-        margin: auto;
-    }
-
-    .question-box {
-        background: #ffffff;
-        border-radius: 6px;
-        padding: 15px;
-        margin-bottom: 15px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .question {
-        font-weight: bold;
-        cursor: pointer;
-        color: #1a5276;
-    }
-
-    .answer {
-        display: none;
-        margin-top: 10px;
-        line-height: 1.6;
-        color: #333;
-    }
-
-    .footer {
-        text-align: center;
-        margin-top: 30px;
-        font-size: 14px;
-        color: #555;
-    }
-        /* ===== RESET ===== */
+<style>
+/* ================= RESET ================= */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
-/* ===== BODY ===== */
+/* ================= ROOT COLORS ================= */
+:root{
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
+  --pink:#ec4899;
+  --bg:#f4f6fb;
+  --dark:#0f172a;
+  --glass:rgba(255,255,255,0.15);
+  --border:rgba(255,255,255,0.25);
+}
+
+/* ================= BODY ================= */
 body{
-  background:#f4f6fb;
-  color:#222;
-  transition:0.3s;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:#1f2937;
+  min-height:100vh;
+  transition:.4s;
 }
-
-/* ===== DARK MODE ===== */
 body.dark{
-  background:#121212;
-  color:#f1f1f1;
+  background:linear-gradient(135deg,#020617,#020617);
+  color:#f1f5f9;
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  padding:16px 8%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 20px;
-  background:#3f51b5;
-  color:#fff;
+  backdrop-filter:blur(18px);
+  background:rgba(15,23,42,0.6);
+  border-bottom:1px solid var(--border);
 }
-
 header h1{
   font-size:20px;
+  background:linear-gradient(90deg,var(--blue),var(--purple),var(--pink));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-
 .toggle{
-  cursor:pointer;
-  background:#fff;
-  color:#3f51b5;
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:14px;
-}
-
-body.dark .toggle{
-  background:#333;
+  background:linear-gradient(90deg,var(--blue),var(--purple));
   color:#fff;
+  padding:7px 16px;
+  border-radius:999px;
+  font-size:14px;
+  cursor:pointer;
+  transition:.3s;
+}
+.toggle:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(139,92,246,.6);
 }
 
-/* ===== BOOK CONTAINER ===== */
-.book{
-  max-width:900px;
-  margin:20px auto;
-  padding:15px;
+/* ================= CONTAINER ================= */
+.container,.book{
+  max-width:950px;
+  margin:auto;
+  padding:30px 20px;
 }
 
-/* ===== TABS ===== */
+/* ================= GLASS ================= */
+.glass,
+.question-box,
+.chapter,
+.mcq,
+footer{
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+/* ================= ROADMAP ================= */
+iframe{
+  border-radius:18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+/* ================= Q&A ================= */
+.question-box{
+  padding:20px;
+  margin-bottom:18px;
+  cursor:pointer;
+  transition:.4s;
+}
+.question-box:hover{
+  transform:translateY(-4px);
+}
+.answer{
+  display:none;
+  margin-top:12px;
+  line-height:1.7;
+  color:#e5e7eb;
+}
+body:not(.dark) .answer{
+  color:#374151;
+}
+
+/* ================= TABS ================= */
 .tabs{
   display:flex;
-  gap:10px;
-  margin-bottom:15px;
+  gap:14px;
+  margin-bottom:25px;
 }
-
 .tab{
   flex:1;
-  padding:10px;
+  padding:12px;
   border:none;
+  border-radius:14px;
   cursor:pointer;
-  background:#e0e0e0;
-  border-radius:8px;
-  font-weight:bold;
+  font-weight:600;
+  background:rgba(255,255,255,.6);
+  transition:.3s;
+}
+.tab:hover{
+  transform:translateY(-3px);
+}
+.tab.active{
+  background:linear-gradient(90deg,var(--blue),var(--purple));
+  color:#fff;
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
 
-.tab.active{
-  background:#3f51b5;
+/* ================= CHAPTER ================= */
+.chapter{
+  padding:16px;
+  margin:12px 0;
+  font-weight:600;
+  transition:.4s;
+}
+.chapter:hover{
+  transform:translateY(-4px) scale(1.02);
+  background:linear-gradient(135deg,var(--blue),var(--purple));
   color:#fff;
 }
 
-body.dark .tab{
-  background:#333;
-  color:#eee;
-}
-
-body.dark .tab.active{
-  background:#7986cb;
-}
-
-/* ===== CONTENT ===== */
-.content{
-  display:none;
-}
-
-/* ===== CHAPTER BOX ===== */
-.chapter{
-  background:#fff;
-  padding:12px;
-  margin:10px 0;
-  border-radius:8px;
-  cursor:pointer;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
-  font-weight:bold;
-}
-
-.chapter:hover{
-  background:#e8ebff;
-}
-
-body.dark .chapter{
-  background:#1e1e1e;
-  box-shadow:0 2px 5px rgba(255,255,255,0.05);
-}
-
-body.dark .chapter:hover{
-  background:#2a2a2a;
-}
-
-/* ===== MCQ BOX ===== */
+/* ================= MCQ ================= */
 .mcq{
-  background:#fff;
-  margin:15px 0;
-  padding:15px;
-  border-radius:10px;
-  box-shadow:0 3px 8px rgba(0,0,0,0.1);
+  padding:22px;
+  margin:22px 0;
+  transition:.4s;
 }
-
 .mcq p{
-  font-weight:bold;
-  margin-bottom:8px;
+  font-weight:600;
+  margin-bottom:12px;
 }
-
 .mcq label{
   display:block;
-  margin:6px 0;
+  padding:6px 0;
   cursor:pointer;
 }
-
-.mcq input{
-  margin-right:6px;
-}
-
-body.dark .mcq{
-  background:#1e1e1e;
-  box-shadow:0 3px 8px rgba(255,255,255,0.05);
-}
-
-/* ===== HEADINGS ===== */
-h2{
-  margin:10px 0;
-}
-/* ===== MCQ RESULT HIGHLIGHT ===== */
 .mcq.correct{
   border:2px solid #22c55e;
-  background:#ecfdf5;
+  background:rgba(34,197,94,.15);
 }
 .mcq.wrong{
   border:2px solid #ef4444;
-  background:#fef2f2;
+  background:rgba(239,68,68,.15);
 }
-    </style>
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:30px;
+  margin-top:40px;
+  font-size:14px;
+  color:#e5e7eb;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  header{flex-direction:column;gap:12px}
+  .tabs{flex-direction:column}
+}
+</style>
 </head>
-<body> 
-        <!-- Section 1: PDF -->
-           <center>
-        <div class="section">
-            <h2>NEET ROADMAP</h2>
-           <iframe src="https://gamma.app/embed/7p23djemip7tijo" style="width: 700px; max-width: 100%; height: 450px" allow="fullscreen" title="Your NEET Journey: Paving the Path to Medical Success"></iframe>
-        </div>
-                  </center>
-    <h1>Biology – Class 11<br>The Living World (NCERT Based)</h1>
 
-<div class="container">
+<body>
 
-    <!-- Q1 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q1. What is meant by “Living World” according to NCERT?
-        </div>
-        <div class="answer">
-            According to NCERT, the living world includes all organisms that show characteristics of life such as growth, reproduction, metabolism and responsiveness. It includes a vast diversity of organisms ranging from microscopic bacteria to complex multicellular plants and animals. The study of the living world involves identification, classification, nomenclature and understanding evolutionary relationships, which helps in organizing biological knowledge systematically.
-        </div>
-    </div>
-
-    <!-- Q2 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q2. Define biodiversity. Why is it important?
-        </div>
-        <div class="answer">
-            Biodiversity refers to the total number and variety of living organisms present on Earth. According to NCERT, it includes diversity at genetic, species and ecosystem levels. Biodiversity is important because it maintains ecological balance, provides food, medicines and raw materials, and ensures stability of ecosystems. High biodiversity improves adaptability of organisms to environmental changes.
-        </div>
-    </div>
-
-    <!-- Q3 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q3. Explain the process of identification of living organisms.
-        </div>
-        <div class="answer">
-            Identification is the process of recognizing and determining the correct identity of an organism. According to NCERT, it involves comparing the organism’s characteristics with already described organisms in taxonomic literature. Identification helps in assigning correct scientific names and placing organisms in proper groups for study, research and conservation.
-        </div>
-    </div>
-
-    <!-- Q4 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q4. What is nomenclature? Why is it necessary?
-        </div>
-        <div class="answer">
-            Nomenclature is the system of assigning scientific names to organisms. It is necessary because common names vary from place to place and language to language. According to NCERT, scientific nomenclature provides a universal system accepted worldwide, ensuring clarity and avoiding confusion in scientific communication.
-        </div>
-    </div>
-
-    <!-- Q5 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q5. Describe binomial nomenclature.
-        </div>
-        <div class="answer">
-            Binomial nomenclature is the system of naming organisms using two words, proposed by Carolus Linnaeus. According to NCERT, the first word represents the genus and the second represents the species. Scientific names are written in italics or underlined when handwritten, ensuring universal and uniform identification of organisms.
-        </div>
-    </div>
-
-    <!-- Q6 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q6. Define taxonomy.
-        </div>
-        <div class="answer">
-            Taxonomy is the branch of biology that deals with identification, nomenclature and classification of organisms. According to NCERT, taxonomy helps in organizing the vast diversity of living organisms into systematic groups, making their study easier and more scientific.
-        </div>
-    </div>
-
-    <!-- Q7 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q7. What are taxonomic aids?
-        </div>
-        <div class="answer">
-            Taxonomic aids are tools that help in identification, classification and naming of organisms. According to NCERT, examples include herbarium, botanical gardens, museums, zoological parks, keys, flora and manuals. These aids provide reference material for accurate study of organisms.
-        </div>
-    </div>
-
-    <!-- Q8 -->
-    <div class="question-box">
-        <div class="question" onclick="toggleAnswer(this)">
-            Q8. What are taxonomic keys?
-        </div>
-        <div class="answer">
-            Taxonomic keys are tools used to identify organisms based on contrasting characteristics. According to NCERT, they consist of paired statements called couplets. By choosing the correct option at each step, the organism can be accurately identified.
-        </div>
-    </div>
-</div>
-<center>
-    <header>
-           <h1>📘 NEET Book (Chapter-wise MCQs)</h1>  
+<header>
+  <h1>📘 NEET Interactive Book</h1>
   <div class="toggle" onclick="toggleDark()">🌙 Dark Mode</div>
 </header>
- </center>
+
+<!-- ROADMAP -->
+<div class="container">
+  <h2 align="center">NEET ROADMAP</h2><br>
+  <iframe src="https://gamma.app/embed/7p23djemip7tijo"
+    style="width:100%;height:450px" allowfullscreen></iframe>
+</div>
+
+<!-- Q&A -->
+<div class="container">
+  <h2>Biology – The Living World</h2><br>
+
+  <div class="question-box" onclick="toggleAnswer(this)">
+    <b>What is Living World?</b>
+    <div class="answer">
+      Living world includes all organisms showing life processes.
+    </div>
+  </div>
+
+  <div class="question-box" onclick="toggleAnswer(this)">
+    <b>Define biodiversity</b>
+    <div class="answer">
+      Biodiversity is the variety of living organisms on Earth.
+    </div>
+  </div>
+</div>
+
+<!-- BOOK + MCQ -->
 <div class="book">
 
 <div class="tabs">
-  <button class="tab active" onclick="openSubject('physics')">Physics</button>
-  <button class="tab" onclick="openSubject('chemistry')">Chemistry</button>
-  <button class="tab" onclick="openSubject('biology')">Biology</button>
+  <button class="tab active" onclick="openSubject('physics',this)">Physics</button>
+  <button class="tab" onclick="openSubject('chemistry',this)">Chemistry</button>
+  <button class="tab" onclick="openSubject('biology',this)">Biology</button>
 </div>
 
 <!-- PHYSICS -->
-<div id="physics" class="content" style="display:block;">
-<h2>📐 Physics Chapters</h2>
-<div class="chapter" onclick="loadMCQs('physics','mechanics')">Mechanics</div>
-<div class="chapter" onclick="loadMCQs('physics','electro')">Electrodynamics</div>
-<div class="chapter" onclick="loadMCQs('physics','modern')">Modern Physics</div>
-<div id="physics-mcq"></div>
+<div id="physics" class="content" style="display:block">
+  <h2>Physics</h2>
+  <div class="chapter" onclick="loadMCQs('physics','mechanics')">Mechanics</div>
+  <div class="chapter" onclick="loadMCQs('physics','electro')">Electrodynamics</div>
+  <div class="chapter" onclick="loadMCQs('physics','modern')">Modern Physics</div>
+  <div id="physics-mcq"></div>
 </div>
 
 <!-- CHEMISTRY -->
 <div id="chemistry" class="content">
-<h2>⚗️ Chemistry Chapters</h2>
-<div class="chapter" onclick="loadMCQs('chemistry','physical')">Physical Chemistry</div>
-<div class="chapter" onclick="loadMCQs('chemistry','organic')">Organic Chemistry</div>
-<div class="chapter" onclick="loadMCQs('chemistry','inorganic')">Inorganic Chemistry</div>
-<div id="chemistry-mcq"></div>
+  <h2>Chemistry</h2>
+  <div class="chapter" onclick="loadMCQs('chemistry','physical')">Physical</div>
+  <div class="chapter" onclick="loadMCQs('chemistry','organic')">Organic</div>
+  <div class="chapter" onclick="loadMCQs('chemistry','inorganic')">Inorganic</div>
+  <div id="chemistry-mcq"></div>
 </div>
 
 <!-- BIOLOGY -->
 <div id="biology" class="content">
-<h2>🧬 Biology Chapters</h2>
-<div class="chapter" onclick="loadMCQs('biology','botany')">Botany</div>
-<div class="chapter" onclick="loadMCQs('biology','zoology')">Zoology</div>
-<div id="biology-mcq"></div>
+  <h2>Biology</h2>
+  <div class="chapter" onclick="loadMCQs('biology','botany')">Botany</div>
+  <div class="chapter" onclick="loadMCQs('biology','zoology')">Zoology</div>
+  <div id="biology-mcq"></div>
 </div>
+
 </div>
-<div class="footer">
-    NCERT • NEET Biology • Class 11
-</div>
-    <script>
-        function toggleAnswer(element) {
-    const answer = element.nextElementSibling;
-    if (answer.style.display === "block") {
-        answer.style.display = "none";
-    } else {
-        answer.style.display = "block";
-    }
+
+<div class="footer">NCERT • NEET • Class 11</div>
+
+<script>
+function toggleDark(){
+  document.body.classList.toggle("dark");
 }
-        function openSubject(sub){
+function toggleAnswer(el){
+  const a = el.querySelector(".answer");
+  a.style.display = a.style.display==="block" ? "none" : "block";
+}
+function openSubject(id,btn){
   document.querySelectorAll(".content").forEach(c=>c.style.display="none");
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-  document.getElementById(sub).style.display="block";
-  event.target.classList.add("active");
+  document.getElementById(id).style.display="block";
+  btn.classList.add("active");
 }
 
-function toggleDark(){document.body.classList.toggle("dark");}
-
-/* ===== MCQ DATA (3 OPTIONS, 10+ READY STRUCTURE) ===== */
+/* ===== FULL MCQ DATA ===== */
 const mcqData = {
 physics:{
 mechanics:[
-{q:"Force ka SI unit?",o:["Newton","Joule","Watt"],a:0},
-{q:"Speed ki unit?",o:["m/s","kg","Joule"],C:0},
-{q:"Work ka unit?",o:["Joule","Newton","Ampere"],a:0},
-{q:"Mass ki unit?",o:["kg","m","s"],a:0},
-{q:"Acceleration unit?",o:["m/s²","m","kg"],B:0}
+{q:"Force unit?",o:["Newton","Joule","Watt"],a:0},
+{q:"Speed unit?",o:["m/s","kg","J"],a:0}
 ],
 electro:[
-{q:"Current unit?",o:["Ampere","Volt","Ohm"],B:0},
-{q:"Voltage unit?",o:["Volt","Ampere","Watt"],a:0},
-{q:"Resistance unit?",o:["Ohm","Volt","Joule"],C:0},
-{q:"Battery store karta hai?",o:["Energy","Current","Power"],a:0},
-{q:"Electric charge unit?",o:["Coulomb","Ampere","Volt"],a:0}
+{q:"Current unit?",o:["Ampere","Volt","Ohm"],a:0}
 ],
 modern:[
-{q:"Photon related hai?",o:["Light","Sound","Heat"],a:0},
-{q:"E=mc² kisne diya?",o:["Einstein","Newton","Bohr"],a:0},
-{q:"X-rays discover?",o:["Roentgen","Einstein","Curie"],a:0},
-{q:"Nuclear energy kis se?",o:["Fission","Friction","Motion"],a:0},
-{q:"Electron discover?",o:["J.J Thomson","Rutherford","Bohr"],a:0}
+{q:"E=mc² by?",o:["Einstein","Newton","Bohr"],a:0}
 ]
 },
 chemistry:{
 physical:[
-{q:"pH < 7?",o:["Acidic","Basic","Neutral"],a:0},
-{q:"Gas law related?",o:["Pressure","Color","Smell"],a:0},
-{q:"Mole concept unit?",o:["Mol","Gram","Liter"],a:0},
-{q:"Heat unit?",o:["Joule","Watt","Kelvin"],a:0},
-{q:"STP temp?",o:["0°C","25°C","100°C"],a:0}
+{q:"pH < 7?",o:["Acidic","Basic","Neutral"],a:0}
 ],
 organic:[
-{q:"Organic study of?",o:["Carbon","Metal","Salt"],a:0},
-{q:"CH₄?",o:["Methane","Ethane","Propane"],a:0},
-{q:"C₂H₆?",o:["Ethane","Methane","Butane"],a:0},
-{q:"Alcohol group?",o:["OH","CO","NH"],a:0},
-{q:"Benzene formula?",o:["C6H6","C6H12","C5H5"],a:0}
+{q:"CH4 name?",o:["Methane","Ethane","Propane"],a:0}
 ],
 inorganic:[
-{q:"NaCl kya?",o:["Salt","Acid","Base"],a:0},
-{q:"HCl kya?",o:["Acid","Salt","Base"],a:0},
-{q:"NaOH kya?",o:["Base","Salt","Acid"],a:0},
-{q:"Periodic table banaya?",o:["Mendeleev","Bohr","Newton"],a:0},
-{q:"Oxygen symbol?",o:["O","Ox","Og"],a:0}
+{q:"NaCl is?",o:["Salt","Acid","Base"],a:0}
 ]
 },
 biology:{
 botany:[
-{q:"Photosynthesis hota?",o:["Chloroplast","Mitochondria","Nucleus"],a:0},
-{q:"Root ka work?",o:["Absorption","Respiration","Food"],a:0},
-{q:"Leaf color green kyon?",o:["Chlorophyll","Water","Root"],a:0},
-{q:"Plant cell wall?",o:["Cellulose","Protein","Fat"],a:0},
-{q:"Seed develop?",o:["Flower","Root","Leaf"],a:0}
+{q:"Photosynthesis in?",o:["Chloroplast","Mitochondria","Nucleus"],a:0}
 ],
 zoology:[
-{q:"Heart chambers?",o:["4","2","3"],a:0},
-{q:"Blood red kyon?",o:["Hemoglobin","Plasma","WBC"],a:0},
-{q:"Human brain part?",o:["Cerebrum","Root","Leaf"],a:0},
-{q:"Breathing organ?",o:["Lungs","Heart","Liver"],a:0},
-{q:"Digest food?",o:["Stomach","Kidney","Lungs"],a:0}
+{q:"Heart chambers?",o:["4","2","3"],a:0}
 ]
 }
 };
@@ -439,61 +323,25 @@ function loadMCQs(subject,chapter){
   let html="";
   data.forEach((q,i)=>{
     html+=`
-    <div class="mcq">
-      <p>${i+1}. ${q.q}</p>
-      ${q.o.map((op,j)=>`
-        <label><input type="radio" name="q${i}" value="${j}"> ${op}</label><br>
-      `).join("")}
-    </div>`;
-  });
-  document.getElementById(subject+"-mcq").innerHTML = html;
-}
-let scores = {
-  physics:0,
-  chemistry:0,
-  biology:0
-};
-
-function loadMCQs(subject,chapter){
-  const data = mcqData[subject][chapter];
-  scores[subject]=0;
-
-  let html="";
-  data.forEach((q,i)=>{
-    html+=`
-    <div class="mcq" data-answer="${q.a}">
+    <div class="mcq" data-a="${q.a}">
       <p>${i+1}. ${q.q}</p>
       ${q.o.map((op,j)=>`
         <label>
-          <input type="radio" name="${subject}-q${i}" 
-          onclick="checkAnswer(this,${j},'${subject}')">
-          ${op}
-        </label>
+          <input type="radio" name="${subject}${i}"
+          onclick="check(this,${j})"> ${op}
+        </label><br>
       `).join("")}
     </div>`;
   });
-
   document.getElementById(subject+"-mcq").innerHTML = html;
-  document.getElementById(subject+"-score").innerText = "Score: 0";
 }
-
-function checkAnswer(input,selected,subject){
+function check(input,sel){
   const mcq = input.closest(".mcq");
   if(mcq.classList.contains("done")) return;
-
   mcq.classList.add("done");
-  const correct = mcq.dataset.answer;
-
-  if(selected == correct){
-    mcq.classList.add("correct");
-    scores[subject]++;
-  }else{
-    mcq.classList.add("wrong");
-  }
-
-  document.getElementById(subject+"-score").innerText =
-    "Score: " + scores[subject];
+  sel==mcq.dataset.a ? mcq.classList.add("correct") : mcq.classList.add("wrong");
 }
-    </script>
+</script>
+
 </body>
 </html>
