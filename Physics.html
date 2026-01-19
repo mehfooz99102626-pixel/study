@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Physics IIT Level MCQs</title>
+<style>
+body{font-family:Arial;background:#f4f6fb;margin:0}
+header{background:#1e3c72;color:white;padding:20px;text-align:center}
+.container{max-width:900px;margin:auto;padding:20px}
+.mcq{background:#fff;padding:15px;margin-bottom:15px;border-radius:8px}
+.correct{border-left:6px solid green}
+.wrong{border-left:6px solid red}
+.answer{margin-top:8px;font-weight:bold;color:#1e3c72}
+button{padding:12px 25px;background:#1e3c72;color:white;border:none;border-radius:6px}
+.qa-section h2{
+  text-align:center;
+  margin:20px 0;
+  color:#1e3c72;
+}
+.qa-card{
+  background:#ffffff;
+  padding:16px;
+  margin-bottom:14px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.qa-card h3{
+  margin:0 0 8px;
+  color:#2a5298;
+}
+.qa-card p{
+  margin:0;
+  font-size:15px;
+  line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>PHYSICS – IIT LEVEL</h1>
+<p>Mechanics | Electrodynamics | Modern Physics</p>
+<p>50+ MCQs with Answers</p>
+</header>
+
+<div class="container">
+<form id="quiz"></form>
+
+<button onclick="submitTest()">Submit Test</button>
+<h2 id="result"></h2>
+</div>
+
+<div class="qa-section">
+
+  <h2>📘 Chemistry – Question & Answer</h2>
+
+  <!-- Physical Chemistry -->
+  <div class="qa-card">
+    <h3>Q1. What is First Order Reaction?</h3>
+    <p><b>Answer:</b> A first order reaction is a reaction whose rate depends only on the concentration of one reactant. The unit of its rate constant is s⁻¹ and its half-life is independent of initial concentration.</p>
+  </div>
+
+  <div class="qa-card">
+    <h3>Q2. Define pH.</h3>
+    <p><b>Answer:</b> pH is the negative logarithm of hydrogen ion concentration. It measures the acidic or basic nature of a solution. A neutral solution has pH 7 at 25°C.</p>
+  </div>
+
+  <div class="qa-card">
+    <h3>Q3. What is Gibbs Free Energy?</h3>
+    <p><b>Answer:</b> Gibbs free energy (G) is defined as G = H − TS. It predicts the spontaneity of a reaction. If ΔG is negative, the reaction is spontaneous.</p>
+  </div>
+
+  <!-- Organic Chemistry -->
+  <div class="qa-card">
+    <h3>Q4. What is Isomerism?</h3>
+    <p><b>Answer:</b> Isomerism is the phenomenon in which compounds have the same molecular formula but different structural arrangements, resulting in different physical or chemical properties.</p>
+  </div>
+
+  <div class="qa-card">
+    <h3>Q5. Why Phenol is more acidic than Alcohol?</h3>
+    <p><b>Answer:</b> Phenol is more acidic because the phenoxide ion formed after losing H⁺ is stabilized by resonance, whereas alkoxide ion from alcohol is not resonance stabilized.</p>
+  </div>
+
+  <div class="qa-card">
+    <h3>Q6. What is Markovnikov’s Rule?</h3>
+    <p><b>Answer:</b> According to Markovnikov’s rule, during addition of HX to an unsymmetrical alkene, hydrogen attaches to the carbon with more hydrogen atoms.</p>
+  </div>
+
+  <!-- Inorganic Chemistry -->
+  <div class="qa-card">
+    <h3>Q7. What is Coordination Number?</h3>
+    <p><b>Answer:</b> Coordination number is the number of ligand donor atoms directly bonded to the central metal atom in a coordination compound.</p>
+  </div>
+
+  <div class="qa-card">
+    <h3>Q8. Define Oxidation and Reduction.</h3>
+    <p><b>Answer:</b> Oxidation is the loss of electrons, while reduction is the gain of electrons. Both processes occur simultaneously in a redox reaction.</p>
+  </div>
+
+  <div class="qa-card">
+    <h3>Q9. Why Noble Gases are Inert?</h3>
+    <p><b>Answer:</b> Noble gases are inert because they have a completely filled valence shell, making them chemically stable and less reactive.</p>
+  </div>
+
+  <div class="qa-card">
+    <h3>Q10. What is Metallic Bond?</h3>
+    <p><b>Answer:</b> Metallic bond is formed due to attraction between positively charged metal ions and the sea of delocalized electrons surrounding them.</p>
+  </div>
+
+</div><script>
+const questions = [
+
+/* ================= MECHANICS (1–40) ================= */
+
+{q:"Work done by centripetal force is",o:["Zero","Maximum","Minimum","Infinite"],a:0},
+{q:"Dimensional formula of angular momentum is",o:["ML²T⁻¹","MLT⁻¹","ML²T⁻²","ML²"],a:0},
+{q:"Escape velocity depends on",o:["Mass","Radius","Mass & Radius","Density"],a:2},
+{q:"If net force is zero, acceleration is",o:["Zero","Maximum","Infinite","Variable"],a:0},
+{q:"SI unit of momentum is",o:["kg m/s","kg m/s²","N s²","J"],a:0},
+{q:"A body in circular motion has",o:["Constant velocity","Changing velocity","Zero acceleration","Zero force"],a:1},
+{q:"Impulse is equal to",o:["Force","Change in momentum","Energy","Power"],a:1},
+{q:"Torque is vector product of",o:["r × F","F × r","r × v","p × v"],a:0},
+{q:"Law of inertia is",o:["1st law","2nd law","3rd law","0th law"],a:0},
+{q:"Center of mass of isolated system moves with",o:["Constant velocity","Acceleration","Zero velocity","Variable speed"],a:0},
+
+{q:"Unit of force is",o:["Newton","Joule","Watt","Pascal"],a:0},
+{q:"Kinetic energy depends on",o:["Velocity","Mass","Both","None"],a:2},
+{q:"Potential energy depends on",o:["Path","Position","Velocity","Time"],a:1},
+{q:"Newton’s third law relates to",o:["Action-reaction","Inertia","Acceleration","Momentum"],a:0},
+{q:"Momentum is conserved when",o:["No external force","Force present","Energy lost","Mass changes"],a:0},
+{q:"Friction always acts",o:["Opposite to motion","Along motion","Upwards","Downwards"],a:0},
+{q:"Centripetal acceleration is directed",o:["Towards center","Away","Along velocity","Random"],a:0},
+{q:"Unit of work is",o:["Joule","Watt","Newton","Pascal"],a:0},
+{q:"Projectile motion is example of",o:["2D motion","1D motion","Circular","SHM"],a:0},
+{q:"Time period of pendulum depends on",o:["Length","Mass","Amplitude","Density"],a:0},
+
+{q:"Angular velocity unit is",o:["rad/s","m/s","Hz","N"],a:0},
+{q:"Moment of inertia depends on",o:["Mass distribution","Velocity","Force","Energy"],a:0},
+{q:"Elastic collision conserves",o:["Momentum & Energy","Only momentum","Only energy","None"],a:0},
+{q:"Power is rate of change of",o:["Energy","Force","Momentum","Velocity"],a:0},
+{q:"Weight depends on",o:["Gravity","Mass","Height","All"],a:3},
+{q:"Hooke’s law is valid up to",o:["Elastic limit","Yield point","Breaking point","Plastic limit"],a:0},
+{q:"Work done in SHM over one cycle",o:["Zero","Maximum","Minimum","Infinite"],a:0},
+{q:"Uniform motion means",o:["Constant velocity","Constant acceleration","Zero velocity","Variable force"],a:0},
+{q:"Centrifugal force is",o:["Pseudo force","Real force","Contact force","Gravitational"],a:0},
+{q:"Escape velocity is independent of",o:["Mass of body","Planet mass","Radius","Gravity"],a:0},
+
+/* ================= ELECTRODYNAMICS (41–70) ================= */
+
+{q:"Unit of electric field is",o:["N/C","J/C","C/N","V"],a:0},
+{q:"SI unit of magnetic flux is",o:["Tesla","Weber","Henry","Ampere"],a:1},
+{q:"Drift velocity increases with",o:["Temperature","Potential difference","Resistance","Length"],a:1},
+{q:"Gauss law relates to",o:["Electric flux","Current","Magnetic field","Energy"],a:0},
+{q:"Capacitance depends on",o:["Area","Distance","Medium","All"],a:3},
+{q:"Ohm’s law is valid for",o:["Metals","All materials","Semiconductors","Insulators"],a:0},
+{q:"Magnetic force acts on",o:["Moving charge","Rest charge","Neutral body","Photon"],a:0},
+{q:"Unit of resistance is",o:["Ohm","Volt","Ampere","Coulomb"],a:0},
+{q:"Kirchhoff’s laws are based on",o:["Energy & Charge","Mass","Momentum","Power"],a:0},
+{q:"Induced emf depends on",o:["Flux change","Current","Resistance","Voltage"],a:0},
+
+{q:"Electric potential unit is",o:["Volt","Ampere","Ohm","Watt"],a:0},
+{q:"Current is rate of flow of",o:["Charge","Energy","Mass","Force"],a:0},
+{q:"Resistance depends on",o:["Length","Area","Material","All"],a:3},
+{q:"Power in circuit is",o:["VI","V/I","I/R","R/I"],a:0},
+{q:"Fuse wire has",o:["Low melting point","High melting","High resistance","Low current"],a:0},
+{q:"AC frequency in India is",o:["50 Hz","60 Hz","100 Hz","25 Hz"],a:0},
+{q:"Transformer works on",o:["Mutual induction","Self induction","Resistance","Capacitance"],a:0},
+{q:"Unit of capacitance is",o:["Farad","Henry","Ohm","Tesla"],a:0},
+{q:"Magnetic field unit is",o:["Tesla","Weber","Henry","Ampere"],a:0},
+{q:"Right hand thumb rule is for",o:["Magnetic field direction","Force","Current","Voltage"],a:0},
+
+/* ================= MODERN PHYSICS (71–100) ================= */
+
+{q:"Photoelectric effect supports",o:["Particle theory","Wave theory","Both","None"],a:0},
+{q:"Energy of photon is",o:["hν","mc²","eV","p²/2m"],a:0},
+{q:"de Broglie wavelength depends on",o:["Momentum","Charge","Energy","Mass only"],a:0},
+{q:"Binding energy is due to",o:["Nuclear force","Gravity","Electric","Magnetic"],a:0},
+{q:"Half-life is independent of",o:["Temperature","Pressure","Chemical state","All"],a:3},
+{q:"Atomic spectrum is",o:["Line spectrum","Continuous","Band","Random"],a:0},
+{q:"Bohr model explains",o:["Hydrogen atom","All atoms","Molecules","Solids"],a:0},
+{q:"Mass defect leads to",o:["Binding energy","Kinetic","Heat","Radiation"],a:0},
+{q:"Radioactivity is",o:["Spontaneous","Forced","Chemical","Thermal"],a:0},
+{q:"Pair production energy is",o:["1.02 MeV","0.51 MeV","2 MeV","Zero"],a:0},
+
+{q:"X-rays are",o:["Electromagnetic","Mechanical","Sound","Matter waves"],a:0},
+{q:"Nuclear fission occurs in",o:["Uranium","Hydrogen","Helium","Carbon"],a:0},
+{q:"Fusion occurs in",o:["Sun","Reactor","Earth","Bomb"],a:0},
+{q:"Beta rays are",o:["Electrons","Protons","Neutrons","Photons"],a:0},
+{q:"Gamma rays have",o:["Highest energy","Lowest energy","Mass","Charge"],a:0},
+{q:"LASER stands for",o:["Light Amplification","Sound","Heat","Energy"],a:0},
+{q:"LED works on",o:["Electroluminescence","Photoelectric","Thermionic","Magnetic"],a:0},
+{q:"Semiconductor used in diode",o:["Silicon","Iron","Copper","Silver"],a:0},
+{q:"Logic gate NOT has output",o:["Opposite","Same","Zero","Random"],a:0},
+{q:"Transistor is used as",o:["Amplifier","Resistor","Capacitor","Inductor"],a:0}
+];
+
+const quiz = document.getElementById("quiz");
+
+/* ===== RENDER QUESTIONS ===== */
+questions.forEach((item,index)=>{
+  let html = `<div class="mcq" id="mcq${index}">
+    <p><b>${index+1}. ${item.q}</b></p>`;
+  item.o.forEach((opt,i)=>{
+    html += `
+    <label>
+      <input type="radio" name="q${index}" value="${i}"> ${opt}
+    </label><br>`;
+  });
+  html += `<div class="answer" id="ans${index}"></div></div>`;
+  quiz.innerHTML += html;
+});
+
+/* ===== SUBMIT & SHOW ANSWERS ===== */
+function submitTest(){
+  let score = 0;
+
+  questions.forEach((item,index)=>{
+    let sel = document.querySelector(`input[name="q${index}"]:checked`);
+    let mcqDiv = document.getElementById(`mcq${index}`);
+    let ansDiv = document.getElementById(`ans${index}`);
+
+    if(sel){
+      if(Number(sel.value) === item.a){
+        score++;
+        mcqDiv.classList.add("correct");
+        ansDiv.innerHTML = "✅ Correct";
+      }else{
+        mcqDiv.classList.add("wrong");
+        ansDiv.innerHTML = "❌ Correct Answer: " + item.o[item.a];
+      }
+    }else{
+      mcqDiv.classList.add("wrong");
+      ansDiv.innerHTML = "❗ Not Attempted | Correct Answer: " + item.o[item.a];
+    }
+  });
+
+  document.getElementById("result").innerHTML =
+   `✅ Final Score: ${score} / ${questions.length}`;
+}
+</script>
+
+</body>
+</html>
