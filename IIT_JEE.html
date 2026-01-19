@@ -246,8 +246,8 @@ footer{
     <div class="subject">
       <h3>Physics</h3>
       <p>Mechanics, Electrodynamics, Modern Physics (IIT Level)</p>
-     
-      <button class="btn-phy" onclick="openSub('Physics')">Start Physics</button>
+      <a href="Physics.html" class="exam-btn">Start Physics</a>
+      <button class="btn-phy" onclick="openSub('Physics','Physics.html')">Start Physics</button>
     </div>
 
     <div class="subject">
@@ -272,8 +272,9 @@ footer{
 function goBack(){
   window.location.href="index.html";
 }
-function openSub(sub){
+function openSub(sub,url){
   alert(sub + " (JEE Advanced) launching next 🚀");
+  redirect(url);
 }
 </script>
 
