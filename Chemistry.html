@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics IIT Level MCQs</title>
+<style>
+
+body{font-family:Arial;background:#f4f6fb;margin:0}
+header{background:#1e3c72;color:white;padding:20px;text-align:center}
+.container{max-width:900px;margin:auto;padding:20px}
+.mcq{background:#fff;padding:15px;margin-bottom:15px;border-radius:8px}
+.correct{border-left:6px solid green}
+.wrong{border-left:6px solid red}
+.answer{margin-top:8px;font-weight:bold;color:#1e3c72}
+button{padding:12px 25px;background:#1e3c72;color:white;border:none;border-radius:6px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>PHYSICS – IIT LEVEL</h1>
+<p>Mechanics | Electrodynamics | Modern Physics</p>
+<p>50+ MCQs with Answers</p>
+</header>
+
+<div class="container">
+<form id="quiz"></form>
+
+<button onclick="submitTest()">Submit Test</button>
+<h2 id="result"></h2>
+</div>
+
+<script>
+const questions = [
+
+/* ================= CHEMISTRY – IIT LEVEL ================= */
+
+/* -------- PHYSICAL CHEMISTRY (1–20) -------- */
+{q:"Unit of rate constant for first order reaction is",o:["s⁻¹","mol L⁻¹ s⁻¹","L mol⁻¹ s⁻¹","No unit"],a:0},
+{q:"pH of neutral solution at 25°C is",o:["7","0","14","1"],a:0},
+{q:"Ideal gas equation is",o:["PV = nRT","PV = RT","P/T = constant","V/T = constant"],a:0},
+{q:"Avogadro number is",o:["6.022×10²³","3×10⁸","9.8","1.6×10⁻¹⁹"],a:0},
+{q:"Entropy is measure of",o:["Disorder","Energy","Heat","Temperature"],a:0},
+{q:"Gibbs free energy is G =",o:["H−TS","H+TS","TS−H","H/T"],a:0},
+{q:"Exothermic reaction has ΔH",o:["Negative","Positive","Zero","Infinite"],a:0},
+{q:"Rate of reaction depends on",o:["Concentration","Temperature","Catalyst","All"],a:3},
+{q:"Molarity depends on",o:["Volume","Temperature","Pressure","All"],a:3},
+{q:"Colligative properties depend on",o:["Number of particles","Nature","Color","Mass"],a:0},
+
+{q:"Raoult’s law is related to",o:["Vapour pressure","Osmosis","Conductance","Electrolysis"],a:0},
+{q:"Electrochemical cell converts",o:["Chemical to electrical energy","Heat to work","Electrical to chemical","Mechanical to heat"],a:0},
+{q:"Standard electrode potential is measured at",o:["1 M","0.1 M","10 M","Pure solid"],a:0},
+{q:"Faraday constant value is approx",o:["96500 C","6.02×10²³","1.6×10⁻¹⁹","3×10⁸"],a:0},
+{q:"Order of reaction is determined by",o:["Experiment","Equation","Stoichiometry","Temperature"],a:0},
+{q:"Half-life of first order reaction is",o:["Independent of concentration","Dependent","Zero","Infinite"],a:0},
+{q:"van’t Hoff factor is related to",o:["Abnormal molar mass","Ideal gas","pH","Rate law"],a:0},
+{q:"Osmotic pressure is given by",o:["π = CRT","PV=nRT","RT/F","ΔG=−nFE"],a:0},
+{q:"Strong electrolyte shows",o:["High conductance","Low conductance","No conductance","Zero ions"],a:0},
+{q:"Activation energy is minimum energy to",o:["Start reaction","Stop reaction","Increase yield","Form product"],a:0},
+
+/* -------- ORGANIC CHEMISTRY (21–40) -------- */
+{q:"General formula of alkane is",o:["CnH2n+2","CnH2n","CnH2n−2","CnHn"],a:0},
+{q:"Functional group of alcohol is",o:["–OH","–COOH","–CHO","–NH2"],a:0},
+{q:"Ethene shows which hybridization",o:["sp²","sp","sp³","dsp²"],a:0},
+{q:"Isomerism shown by butane is",o:["Chain","Position","Optical","Geometrical"],a:0},
+{q:"Benzene is",o:["Aromatic","Aliphatic","Saturated","Cycloalkane"],a:0},
+{q:"Reagent for alkene test is",o:["Bromine water","FeCl₃","NaOH","Tollen’s"],a:0},
+{q:"SN1 reaction proceeds via",o:["Carbocation","Carbanion","Free radical","Ion pair"],a:0},
+{q:"SN2 reaction is",o:["One step","Two step","Three step","No step"],a:0},
+{q:"Aldehyde functional group is",o:["–CHO","–COOH","–OH","–CO–"],a:0},
+{q:"Tollen’s test is for",o:["Aldehyde","Ketone","Alcohol","Acid"],a:0},
+
+{q:"Ketone gives positive test with",o:["Iodoform","Tollen’s","FeCl₃","Lucas"],a:0},
+{q:"Acetic acid formula is",o:["CH₃COOH","HCOOH","C₂H₅OH","CH₃CHO"],a:0},
+{q:"Phenol is more acidic than alcohol due to",o:["Resonance","Inductive effect","Hyperconjugation","Steric"],a:0},
+{q:"Aniline is",o:["Basic","Acidic","Neutral","Salt"],a:0},
+{q:"Reagent for nitro group reduction is",o:["Sn/HCl","KMnO₄","NaOH","H₂SO₄"],a:0},
+{q:"Geometrical isomerism is due to",o:["Restricted rotation","Free rotation","Resonance","Hybridization"],a:0},
+{q:"Carboxylic acid group is",o:["–COOH","–CHO","–CO–","–OH"],a:0},
+{q:"Esters have pleasant",o:["Smell","Taste","Color","Density"],a:0},
+{q:"Primary alcohol oxidizes to",o:["Aldehyde","Ketone","Acid","Alkane"],a:0},
+{q:"Markovnikov rule applies to",o:["Addition reactions","Substitution","Elimination","Rearrangement"],a:0},
+
+/* -------- INORGANIC CHEMISTRY (41–60) -------- */
+{q:"Periodic table is arranged by",o:["Atomic number","Atomic mass","Density","Valency"],a:0},
+{q:"Alkali metals belong to group",o:["1","2","17","18"],a:0},
+{q:"Most electronegative element is",o:["Fluorine","Oxygen","Chlorine","Nitrogen"],a:0},
+{q:"Noble gases have valency",o:["Zero","One","Two","Variable"],a:0},
+{q:"Rust is hydrated",o:["Iron oxide","Copper oxide","Zinc oxide","Aluminium oxide"],a:0},
+{q:"Hard water contains",o:["Ca²⁺ & Mg²⁺","Na⁺","K⁺","H⁺"],a:0},
+{q:"Permanent hardness removed by",o:["Washing soda","Boiling","Filtration","Freezing"],a:0},
+{q:"Coordination number of central atom is",o:["Number of ligands","Oxidation state","Valency","Charge"],a:0},
+{q:"Ligand that donates two pairs is",o:["Bidentate","Monodentate","Tridentate","Ambidentate"],a:0},
+{q:"Werner theory explains",o:["Coordination compounds","Periodic table","Bonding","Isomerism"],a:0},
+
+{q:"d-block elements are also called",o:["Transition metals","Alkali metals","Halogens","Noble gases"],a:0},
+{q:"Oxidation is loss of",o:["Electrons","Protons","Neutrons","Mass"],a:0},
+{q:"Reduction is gain of",o:["Electrons","Energy","Charge","Mass"],a:0},
+{q:"Oxidizing agent itself gets",o:["Reduced","Oxidized","Neutral","Stable"],a:0},
+{q:"Reducing agent itself gets",o:["Oxidized","Reduced","Neutral","Inactive"],a:0},
+{q:"p-block elements include",o:["Groups 13–18","1–2","3–12","Only 17"],a:0},
+{q:"Ammonia molecule shape is",o:["Trigonal pyramidal","Linear","Tetrahedral","Octahedral"],a:0},
+{q:"Hybridization of carbon in CH₄ is",o:["sp³","sp²","sp","dsp²"],a:0},
+{q:"Metallic bond is due to",o:["Sea of electrons","Ion transfer","Covalent sharing","Hydrogen bond"],a:0},
+{q:"Common oxidation state of oxygen is",o:["−2","+2","0","−1"],a:0}
+];
+
+const quiz = document.getElementById("quiz");
+
+/* ===== RENDER QUESTIONS ===== */
+questions.forEach((item,index)=>{
+  let html = `<div class="mcq" id="mcq${index}">
+    <p><b>${index+1}. ${item.q}</b></p>`;
+  item.o.forEach((opt,i)=>{
+    html += `
+    <label>
+      <input type="radio" name="q${index}" value="${i}"> ${opt}
+    </label><br>`;
+  });
+  html += `<div class="answer" id="ans${index}"></div></div>`;
+  quiz.innerHTML += html;
+});
+
+/* ===== SUBMIT & SHOW ANSWERS ===== */
+function submitTest(){
+  let score = 0;
+
+  questions.forEach((item,index)=>{
+    let sel = document.querySelector(`input[name="q${index}"]:checked`);
+    let mcqDiv = document.getElementById(`mcq${index}`);
+    let ansDiv = document.getElementById(`ans${index}`);
+
+    if(sel){
+      if(Number(sel.value) === item.a){
+        score++;
+        mcqDiv.classList.add("correct");
+        ansDiv.innerHTML = "✅ Correct";
+      }else{
+        mcqDiv.classList.add("wrong");
+        ansDiv.innerHTML = "❌ Correct Answer: " + item.o[item.a];
+      }
+    }else{
+      mcqDiv.classList.add("wrong");
+      ansDiv.innerHTML = "❗ Not Attempted | Correct Answer: " + item.o[item.a];
+    }
+  });
+
+  document.getElementById("result").innerHTML =
+   `✅ Final Score: ${score} / ${questions.length}`;
+}
+</script>
+
+</body>
+</html>
