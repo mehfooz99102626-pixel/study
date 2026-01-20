@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Subject Navbar</title>
+    <title>Dropdown Subject Navbar</title>
     <style>
-      * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,7 +12,7 @@
 }
 
 .navbar {
-    background-color: #0f172a;
+    background: #0f172a;
     color: white;
     padding: 12px 20px;
     display: flex;
@@ -31,17 +31,40 @@
     gap: 15px;
 }
 
-.nav-links li a {
+.nav-links a {
     color: white;
     text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: 0.3s;
+    padding: 8px 12px;
+    display: block;
 }
 
-.nav-links li a:hover {
-    background-color: #38bdf8;
-    color: #000;
+.nav-links a:hover {
+    background: #38bdf8;
+    color: black;
+    border-radius: 4px;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: #1e293b;
+    list-style: none;
+    display: none;
+    min-width: 160px;
+}
+
+.dropdown-menu li a {
+    padding: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 /* Hamburger */
@@ -62,9 +85,8 @@
         top: 60px;
         left: 0;
         width: 100%;
-        background-color: #0f172a;
+        background: #0f172a;
         flex-direction: column;
-        align-items: center;
         display: none;
     }
 
@@ -72,41 +94,98 @@
         display: flex;
     }
 
-    .nav-links li {
-        margin: 10px 0;
+    .dropdown-menu {
+        position: static;
+        display: none;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
     }
 }
 
-      </styel>
+</style>
 </head>
 <body>
 
 <nav class="navbar">
     <div class="logo">Subjects</div>
-    <div class="menu-toggle" id="menuToggle">
-        ☰
-    </div>
+
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
     <ul class="nav-links" id="navLinks">
-        <li><a href="#">Mathematics</a></li>
-        <li><a href="#">English</a></li>
-        <li><a href="#">Science</a></li>
-        <li><a href="#">Political Science</a></li>
-        <li><a href="#">History</a></li>
-        <li><a href="#">Geography</a></li>
-        <li><a href="#">Physics</a></li>
-        <li><a href="#">Chemistry</a></li>
-        <li><a href="#">Biology</a></li>
-        <li><a href="#">Computer Science</a></li>
+
+        <li class="dropdown">
+            <a href="#">Mathematics ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Algebra</a></li>
+                <li><a href="#">Trigonometry</a></li>
+                <li><a href="#">Geometry</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">Science ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Physics</a></li>
+                <li><a href="#">Chemistry</a></li>
+                <li><a href="#">Biology</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">Political Science ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Constitution</a></li>
+                <li><a href="#">Democracy</a></li>
+                <li><a href="#">Elections</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">History ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Ancient</a></li>
+                <li><a href="#">Medieval</a></li>
+                <li><a href="#">Modern</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">Geography ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Earth</a></li>
+                <li><a href="#">Climate</a></li>
+                <li><a href="#">Resources</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">Computer Science ▾</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+            </ul>
+        </li>
+
     </ul>
 </nav>
 <script>
-      const menuToggle = document.getElementById("menuToggle");
+const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
+const dropdowns = document.querySelectorAll(".dropdown");
 
 menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
 });
 
-    </script>
+// Mobile dropdown click
+dropdowns.forEach(dropdown => {
+    dropdown.addEventListener("click", () => {
+        dropdown.classList.toggle("active");
+    });
+});
+</script>
 </body>
 </html>
