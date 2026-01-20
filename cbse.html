@@ -146,6 +146,73 @@
         margin-left:auto;
     }
 }
+ 
+.doubt-btn{
+    background:#22c55e;
+    color:#000;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+
+.modal{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-box{
+    background:#fff;
+    padding:20px;
+    width:90%;
+    max-width:400px;
+    border-radius:10px;
+}
+
+.modal-box h3{
+    margin-bottom:10px;
+}
+
+.modal-box input,
+.modal-box textarea{
+    width:100%;
+    padding:8px;
+    margin:6px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.modal-box textarea{
+    height:80px;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.modal-actions button{
+    flex:1;
+    padding:8px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.modal-actions .close{
+    background:#e11d48;
+    color:#fff;
+}
+
 </style>
 </head>
 
@@ -206,15 +273,35 @@
         <li class="dropdown">
             <a href="#">Computer</a>
             <ul class="dropdown-menu">
-                <li><a href="#">IP</a></li>
-                <li><a href="#">JAVA</a></li>
-                <li><a href="#">ET</a></li>
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
             </ul>
         </li>
 
     </ul>
 </nav>
 
+<div class="menu-toggle" id="menuToggle">☰</div>
+
+<button class="doubt-btn" onclick="openDoubt()">Ask Doubt</button>
+
+<!-- ===== DOUBT MODAL ===== -->
+<div class="modal" id="doubtModal">
+  <div class="modal-box">
+    <h3>Ask Your Doubt</h3>
+
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="class" placeholder="Class (11/12)">
+    <input type="text" id="subject" placeholder="Subject">
+    <textarea id="message" placeholder="Write your doubt..."></textarea>
+
+    <div class="modal-actions">
+      <button onclick="sendDoubt()">Send</button>
+      <button class="close" onclick="closeDoubt()">Cancel</button>
+    </div>
+  </div>
+</div>
 <script>
 const menuToggle=document.getElementById("menuToggle");
 const navLinks=document.getElementById("navLinks");
@@ -230,6 +317,75 @@ dropdowns.forEach(drop=>{
         }
     });
 });
+
+function openDoubt(){
+  document.getElementById("doubtModal").style.display="flex";
+}
+
+function closeDoubt(){
+  document.getElementById("doubtModal").style.display="none";
+}
+
+function sendDoubt(){
+  const name=document.getElementById("name").value;
+  const cls=document.getElementById("class").value;
+  const subject=document.getElementById("subject").value;
+  const msg=document.getElementById("message").value;
+
+  if(!name || !cls || !subject || !msg){
+    alert("Please fill all fields");
+    return;
+  }
+
+  alert(
+    "Doubt Sent Successfully!\n\n"+
+    "Name: "+name+"\nClass: "+cls+
+    "\nSubject: "+subject+
+    "\nMessage: "+msg
+  );
+
+  closeDoubt();
+}
+
+const TEACHER_WHATSAPP = "9871992632"; // अपना नंबर डालो
+
+function openDoubt(){
+  document.getElementById("doubtModal").style.display="flex";
+}
+
+function closeDoubt(){
+  document.getElementById("doubtModal").style.display="none";
+}
+
+function sendDoubt(){
+  const name = document.getElementById("name").value.trim();
+  const cls = document.getElementById("class").value.trim();
+  const subject = document.getElementById("subject").value.trim();
+  const msg = document.getElementById("message").value.trim();
+
+  if(!name || !cls || !subject || !msg){
+    alert("Please fill all fields");
+    return;
+  }
+
+  const text =
+`📚 *Student Doubt*
+👤 Name: ${name}
+🏫 Class: ${cls}
+📘 Subject: ${subject}
+
+❓ Doubt:
+${msg}`;
+
+  const url =
+    "https://wa.me/" +
+    TEACHER_WHATSAPP +
+    "?text=" +
+    encodeURIComponent(text);
+
+  window.open(url, "_blank");
+  closeDoubt();
+}
 </script>
 
 </body>
