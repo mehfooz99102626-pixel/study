@@ -1,111 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dropdown Subject Navbar</title>
-    <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+<meta charset="UTF-8">
+<title>Professional Dropdown Navbar</title>
+
+<style>
+:root{
+    --bg-dark:#0f172a;
+    --bg-dropdown:#1e293b;
+    --accent:#38bdf8;
+    --text:#ffffff;
 }
 
-.navbar {
-    background: #0f172a;
-    color: white;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Arial, sans-serif;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: bold;
+/* ===== Navbar ===== */
+.navbar{
+    background:var(--bg-dark);
+    color:var(--text);
+    padding:14px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 15px;
+.logo{
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:0.5px;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 12px;
-    display: block;
+/* ===== Links ===== */
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:10px;
 }
 
-.nav-links a:hover {
-    background: #38bdf8;
-    color: black;
-    border-radius: 4px;
+.nav-links a{
+    color:var(--text);
+    text-decoration:none;
+    padding:10px 14px;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:0.3s;
 }
 
-/* Dropdown */
-.dropdown {
-    position: relative;
+.nav-links a:hover{
+    background:var(--accent);
+    color:#000;
 }
 
-.dropdown-menu {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background: #1e293b;
-    list-style: none;
-    display: none;
-    min-width: 160px;
+/* ===== Dropdown ===== */
+.dropdown{
+    position:relative;
 }
 
-.dropdown-menu li a {
-    padding: 10px;
+.dropdown > a::after{
+    content:"▾";
+    font-size:12px;
+    transition:0.3s;
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
+.dropdown:hover > a::after{
+    transform:rotate(180deg);
 }
 
-/* Hamburger */
-.menu-toggle {
-    display: none;
-    font-size: 26px;
-    cursor: pointer;
+.dropdown-menu{
+    position:absolute;
+    top:48px;
+    left:0;
+    background:var(--bg-dropdown);
+    list-style:none;
+    min-width:180px;
+    border-radius:8px;
+    padding:6px 0;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+    transition:0.3s;
+    z-index:100;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
+.dropdown-menu li a{
+    padding:10px 16px;
+    font-size:14px;
+}
+
+.dropdown:hover .dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+/* ===== Hamburger ===== */
+.menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+
+    .menu-toggle{display:block;}
+
+    .nav-links{
+        position:absolute;
+        top:64px;
+        left:0;
+        width:100%;
+        background:var(--bg-dark);
+        flex-direction:column;
+        padding:10px 0;
+        display:none;
     }
 
-    .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #0f172a;
-        flex-direction: column;
-        display: none;
+    .nav-links.active{
+        display:flex;
     }
 
-    .nav-links.active {
-        display: flex;
+    .dropdown-menu{
+        position:static;
+        box-shadow:none;
+        transform:none;
+        opacity:1;
+        visibility:visible;
+        display:none;
     }
 
-    .dropdown-menu {
-        position: static;
-        display: none;
+    .dropdown.active .dropdown-menu{
+        display:block;
     }
 
-    .dropdown.active .dropdown-menu {
-        display: block;
+    .dropdown > a::after{
+        margin-left:auto;
     }
 }
-
 </style>
 </head>
+
 <body>
 
 <nav class="navbar">
@@ -116,7 +159,7 @@
     <ul class="nav-links" id="navLinks">
 
         <li class="dropdown">
-            <a href="#">Mathematics ▾</a>
+            <a href="#">Mathematics</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Algebra</a></li>
                 <li><a href="#">Trigonometry</a></li>
@@ -125,7 +168,7 @@
         </li>
 
         <li class="dropdown">
-            <a href="#">Science ▾</a>
+            <a href="#">Science</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Physics</a></li>
                 <li><a href="#">Chemistry</a></li>
@@ -134,7 +177,7 @@
         </li>
 
         <li class="dropdown">
-            <a href="#">Political Science ▾</a>
+            <a href="#">Political Science</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Constitution</a></li>
                 <li><a href="#">Democracy</a></li>
@@ -143,7 +186,7 @@
         </li>
 
         <li class="dropdown">
-            <a href="#">History ▾</a>
+            <a href="#">History</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Ancient</a></li>
                 <li><a href="#">Medieval</a></li>
@@ -152,7 +195,7 @@
         </li>
 
         <li class="dropdown">
-            <a href="#">Geography ▾</a>
+            <a href="#">Geography</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Earth</a></li>
                 <li><a href="#">Climate</a></li>
@@ -161,31 +204,33 @@
         </li>
 
         <li class="dropdown">
-            <a href="#">Computer Science ▾</a>
+            <a href="#">Computer</a>
             <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
+                <li><a href="#">IP</a></li>
+                <li><a href="#">JAVA</a></li>
+                <li><a href="#">ET</a></li>
             </ul>
         </li>
 
     </ul>
 </nav>
+
 <script>
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-const dropdowns = document.querySelectorAll(".dropdown");
+const menuToggle=document.getElementById("menuToggle");
+const navLinks=document.getElementById("navLinks");
+const dropdowns=document.querySelectorAll(".dropdown");
 
-menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-});
+menuToggle.onclick=()=>navLinks.classList.toggle("active");
 
-// Mobile dropdown click
-dropdowns.forEach(dropdown => {
-    dropdown.addEventListener("click", () => {
-        dropdown.classList.toggle("active");
+dropdowns.forEach(drop=>{
+    drop.addEventListener("click",e=>{
+        if(window.innerWidth<=768){
+            e.stopPropagation();
+            drop.classList.toggle("active");
+        }
     });
 });
 </script>
+
 </body>
 </html>
