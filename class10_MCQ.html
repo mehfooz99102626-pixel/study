@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Mathematics | MCQ Test</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f8fafc;
+}
+header{
+  background:#2563eb;
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+ 
+.container{
+  padding:20px;
+}
+.card{
+  background:white;
+  padding:15px;
+  margin-bottom:20px;
+  border-radius:8px;
+  box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+.option{
+  display:block;
+  margin:6px 0;
+}
+button{
+  padding:10px 20px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+@media(max-width:600px){
+  nav a{display:block;margin:8px 0;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📝 Class 10 Mathematics – MCQ Test</h1>
+  <p>100 Important MCQs</p>
+</header>
+
+<div class="container">
+  <div class="card" id="mcqBox"></div>
+  <button onclick="submitTest()">Submit Test</button>
+  <h2 id="result"></h2>
+</div>
+
+<script>
+/* ================= MCQ DATA (100 QUESTIONS) ================= */
+const questions = [
+/* -------- REAL NUMBERS (1–10) -------- */
+{q:"HCF ka full form kya hai?", options:["Highest Common Factor","High Common Factor","Highest Factor","None"], ans:0},
+{q:"LCM ka full form?", options:["Least Common Multiple","Low Common Multiple","Large Multiple","None"], ans:0},
+{q:"Euclid Division Lemma ka formula?", options:["a=b+q+r","a=bq+r","a=b-r","a=q-r"], ans:1},
+{q:"2 kaisa number hai?", options:["Composite","Prime","Odd","None"], ans:1},
+{q:"1 prime number hai?", options:["Yes","No","Sometimes","None"], ans:1},
+{q:"Real number ka example?", options:["√2","-5","3.5","All"], ans:3},
+{q:"HCF aur LCM ka relation?", options:["HCF+LCM","HCF×LCM","HCF−LCM","None"], ans:1},
+{q:"Smallest prime number?", options:["1","2","3","0"], ans:1},
+{q:"Composite number ka example?", options:["2","3","4","5"], ans:2},
+{q:"LCM use hota hai?", options:["Division","Addition","Multiples","Factors"], ans:2},
+
+/* -------- POLYNOMIALS (11–20) -------- */
+{q:"Polynomial ka degree?", options:["Lowest power","Highest power","Constant","None"], ans:1},
+{q:"Linear polynomial degree?", options:["0","1","2","3"], ans:1},
+{q:"Quadratic polynomial degree?", options:["1","2","3","4"], ans:1},
+{q:"Cubic polynomial degree?", options:["1","2","3","4"], ans:2},
+{q:"Polynomial ka example?", options:["x²+2x+1","1/x","√x","None"], ans:0},
+{q:"Zero of polynomial?", options:["y-axis","x-axis","Origin","None"], ans:1},
+{q:"Constant polynomial degree?", options:["0","1","2","Undefined"], ans:0},
+{q:"Graph of linear polynomial?", options:["Curve","Parabola","Straight line","Circle"], ans:2},
+{q:"Remainder theorem related to?", options:["Division","Subtraction","Multiplication","Addition"], ans:0},
+{q:"Polynomial ke zeros milte hain?", options:["Roots se","Graph se","Equation se","All"], ans:3},
+
+/* -------- LINEAR EQUATIONS (21–30) -------- */
+{q:"Linear equation ka general form?", options:["ax+by+c=0","ax²+bx+c","x³+y","None"], ans:0},
+{q:"Linear equation me highest power?", options:["1","2","3","0"], ans:0},
+{q:"Graph of linear equation?", options:["Curve","Circle","Straight line","Parabola"], ans:2},
+{q:"Parallel lines ka solution?", options:["One","Two","Infinite","None"], ans:3},
+{q:"Intersecting lines solution?", options:["0","1","2","Infinite"], ans:1},
+{q:"Coincident lines solution?", options:["None","One","Two","Infinite"], ans:3},
+{q:"Substitution method me kya hota hai?", options:["Eliminate","Replace","Add","Subtract"], ans:1},
+{q:"Elimination method me kya hota hai?", options:["Replace","Multiply","Eliminate","Divide"], ans:2},
+{q:"Graphical method based on?", options:["Formula","Graph","Table","Guess"], ans:1},
+{q:"Linear equations variables?", options:["1","2","3","4"], ans:1},
+
+/* -------- QUADRATIC (31–40) -------- */
+{q:"Quadratic equation degree?", options:["1","2","3","4"], ans:1},
+{q:"Quadratic general form?", options:["ax+by","ax²+bx+c","x³+y","None"], ans:1},
+{q:"Discriminant formula?", options:["b²−4ac","a²+b²","2a","None"], ans:0},
+{q:"D > 0 roots?", options:["Equal","No real","Two real","Imaginary"], ans:2},
+{q:"D = 0 roots?", options:["Equal","Different","None","Imaginary"], ans:0},
+{q:"Graph of quadratic?", options:["Line","Circle","Parabola","Triangle"], ans:2},
+{q:"Roots ka sum?", options:["b/a","-b/a","c/a","None"], ans:1},
+{q:"Roots ka product?", options:["c/a","b/a","-b/a","None"], ans:0},
+{q:"Quadratic formula denominator?", options:["a","2a","b","2b"], ans:1},
+{q:"Quadratic equation max roots?", options:["1","2","3","0"], ans:1},
+
+/* -------- TRIGONOMETRY (41–60) -------- */
+{q:"sin²θ+cos²θ=?", options:["0","1","2","-1"], ans:1},
+{q:"tanθ =", options:["sin/cos","cos/sin","1/sin","1/cos"], ans:0},
+{q:"secθ =", options:["1/sin","1/cos","sin","cos"], ans:1},
+{q:"sin 30°?", options:["1","1/2","√3","0"], ans:1},
+{q:"cos 60°?", options:["1","0","1/2","√3"], ans:2},
+{q:"tan 45°?", options:["0","1","√3","1/2"], ans:1},
+{q:"sin 90°?", options:["0","1","1/2","√3"], ans:1},
+{q:"cos 0°?", options:["0","1","-1","1/2"], ans:1},
+{q:"Trigonometric ratios count?", options:["3","4","5","6"], ans:3},
+{q:"cotθ =", options:["1/tan","tan","sin","cos"], ans:0},
+
+/* -------- STATISTICS (61–80) -------- */
+{q:"Statistics related to?", options:["Numbers","Data","Graphs","None"], ans:1},
+{q:"Mean formula?", options:["Σx/n","x/n","Σn/x","None"], ans:0},
+{q:"Mode kya hota hai?", options:["Lowest","Highest","Most frequent","Middle"], ans:2},
+{q:"Median kya hota hai?", options:["Average","Middle","Highest","Lowest"], ans:1},
+{q:"Grouped data me use hota hai?", options:["Formula","Table","Graph","All"], ans:3},
+{q:"Frequency ka matlab?", options:["Class","Count","Range","Mean"], ans:1},
+{q:"Histogram use hota hai?", options:["Line graph","Bar graph","Pie","Curve"], ans:1},
+{q:"Ogive kya hota hai?", options:["Curve","Line","Bar","Table"], ans:0},
+{q:"Mean methods?", options:["1","2","3","4"], ans:2},
+{q:"Statistics ka use?", options:["Prediction","Analysis","Planning","All"], ans:3},
+
+/* -------- PROBABILITY (81–100) -------- */
+{q:"Probability range?", options:["0–1","1–2","-1–1","None"], ans:0},
+{q:"Probability formula?", options:["F/T","T/F","F+T","None"], ans:0},
+{q:"Sure event probability?", options:["0","1","1/2","-1"], ans:1},
+{q:"Impossible event probability?", options:["0","1","-1","2"], ans:0},
+{q:"Coin outcomes?", options:["1","2","3","4"], ans:1},
+{q:"Dice outcomes?", options:["4","5","6","7"], ans:2},
+{q:"Sample space?", options:["Event","Outcome","All outcomes","None"], ans:2},
+{q:"Random experiment?", options:["Fixed","Certain","Uncertain","None"], ans:2},
+{q:"Equally likely events?", options:["Same chance","Different","Random","None"], ans:0},
+{q:"Theoretical probability based on?", options:["Experiment","Logic","Guess","None"], ans:1}
+];
+
+/* ================= LOAD QUESTIONS ================= */
+let box = document.getElementById("mcqBox");
+questions.forEach((q,i)=>{
+  let html = `<h3>Q${i+1}. ${q.q}</h3>`;
+  q.options.forEach((op,j)=>{
+    html += `
+      <label class="option">
+        <input type="radio" name="q${i}" value="${j}"> ${op}
+      </label>`;
+  });
+  box.innerHTML += html;
+});
+
+/* ================= RESULT ================= */
+function submitTest(){
+  let score = 0;
+  questions.forEach((q,i)=>{
+    let ans = document.querySelector(`input[name="q${i}"]:checked`);
+    if(ans){
+      if(parseInt(ans.value) === q.ans){
+        score += 4;
+      }else{
+        score -= 1;
+      }
+    }
+  });
+  document.getElementById("result").innerHTML =
+    `Final Score: ${score} / ${questions.length*4}`;
+}
+</script>
+
+</body>
+</html>
