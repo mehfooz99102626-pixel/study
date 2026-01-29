@@ -1,178 +1,444 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Class 10 Mathematics</title>
-<style>
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Mathematics | Studykeeda</title>
 
+<style>
 :root{
-  --primary:#2563eb;
-  --secondary:#1e40af;
-  --accent:#38bdf8;
-  --bg:#f8fafc;
+  --bg:#f5f5f7;
   --card:#ffffff;
-  --text:#0f172a;
+  --text:#1d1d1f;
+  --light:#6e6e73;
+  --primary:#0071e3;
+  --radius:18px;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body{
-  background:linear-gradient(135deg,#f8fafc,#e0e7ff);
+  background:var(--bg);
   color:var(--text);
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  background:linear-gradient(135deg,#2563eb,#1e40af);
   color:white;
-  padding:35px 20px;
+  padding:25px;
   text-align:center;
-  box-shadow:0 10px 30px rgba(37,99,235,0.3);
 }
-
 header h1{
-  font-size:2.4rem;
-  font-weight:700;
+  font-size:32px;
 }
-
-header p{
-  margin-top:8px;
-  opacity:0.9;
-}
-
-/* ===== NAVBAR ===== */
 nav{
-  background:rgba(30,64,175,0.95);
-  backdrop-filter:blur(10px);
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  padding:12px;
-  position:sticky;
-  top:0;
-  z-index:100;
+  margin-top:12px;
 }
-
 nav a{
   color:white;
   text-decoration:none;
-  padding:10px 18px;
-  border-radius:50px;
+  margin:0 15px;
   font-weight:500;
-  transition:all .3s ease;
 }
 
-nav a:hover{
-  background:var(--accent);
-  color:#020617;
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(56,189,248,.5);
-}
-
-/* ===== CONTENT ===== */
-.content{
+/* HERO */
+.hero{
+  text-align:center;
   padding:50px 20px;
+}
+.hero h2{
+  font-size:36px;
+}
+.hero p{
+  color:var(--light);
+  margin:15px 0 30px;
+  font-size:18px;
+}
+.hero .btn{
+  background:var(--primary);
+  color:white;
+  padding:12px 28px;
+  border-radius:999px;
+  text-decoration:none;
+  margin:5px;
+  display:inline-block;
+}
+
+/* QUICK ACCESS */
+.quick{
   display:grid;
-  place-items:center;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  padding:30px;
+  max-width:1100px;
+  margin:auto;
+}
+.quick div{
+  background:var(--card);
+  padding:25px;
+  border-radius:var(--radius);
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  font-weight:600;
+}
+
+/* CHAPTER SECTION */
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+}
+.section h3{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:30px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
 }
 
 .card{
   background:var(--card);
-  max-width:650px;
-  padding:35px;
-  border-radius:18px;
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.12),
-    inset 0 0 0 1px rgba(255,255,255,.6);
-  text-align:center;
-  animation:fadeUp .8s ease;
+  padding:25px;
+  border-radius:var(--radius);
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+}
+.card h4{
+  margin-bottom:15px;
+}
+.card a{
+  display:inline-block;
+  margin:6px 5px 0 0;
+  padding:8px 18px;
+  border-radius:999px;
+  font-size:14px;
+  text-decoration:none;
+  border:1px solid var(--primary);
+  color:var(--primary);
+}
+.card a.primary{
+  background:var(--primary);
+  color:white;
 }
 
-.card h2{
-  font-size:1.8rem;
+/* DAILY QUESTION */
+.daily{
+  background:var(--card);
+  margin:40px auto;
+  max-width:800px;
+  padding:30px;
+  border-radius:var(--radius);
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.daily h4{
   margin-bottom:10px;
 }
 
-.card p{
-  color:#475569;
-  margin-bottom:25px;
-  line-height:1.7;
-}
-
-/* ===== BUTTON ===== */
-button{
-  padding:14px 28px;
-  border:none;
-  border-radius:50px;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:white;
-  font-size:1rem;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
-}
-
-button:hover{
-  transform:scale(1.05);
-  box-shadow:0 12px 30px rgba(37,99,235,.5);
-}
-
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{
-  background:#020617;
-  color:#cbd5f5;
   text-align:center;
-  padding:15px;
-  font-size:.9rem;
+  padding:30px;
+  background:#1e293b;
+  color:white;
+  margin-top:40px;
+}
+footer p{
+  color:#cbd5f5;
 }
 
-/* ===== ANIMATION ===== */
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(40px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+/* RESPONSIVE */
+@media(max-width:768px){
+  header h1{font-size:24px;}
+  .hero h2{font-size:26px;}
 }
 
-/* ===== MOBILE ===== */
-@media(max-width:600px){
-  header h1{
-    font-size:1.8rem;
-  }
-  nav{
-    flex-direction:column;
-  }
+.search{
+  width:100%;
+  max-width:400px;
+  margin:20px auto;
+  display:block;
+  padding:14px 18px;
+  border-radius:14px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+
+/* DOUBT BOX */
+.doubt-box{
+  background:var(--card);
+  max-width:800px;
+  margin:40px auto;
+  padding:30px;
+  border-radius:var(--radius);
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+.doubt-box h3{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.doubt-box p{
+  text-align:center;
+  color:var(--light);
+  margin-bottom:20px;
+}
+
+.doubt-box textarea{
+  width:100%;
+  min-height:120px;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #d1d5db;
+  font-size:16px;
+  resize:none;
+}
+
+.doubt-box button{
+  display:block;
+  margin:20px auto 0;
+  background:var(--primary);
+  color:white;
+  border:none;
+  padding:12px 30px;
+  border-radius:999px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.success-msg{
+  text-align:center;
+  color:green;
+  margin-top:15px;
+  display:none;
+}
+nav a{
+  position:relative;
+  padding-bottom:4px;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:2px;
+  background:white;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+.hero .btn{
+  transition:0.3s ease;
+}
+
+.hero .btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(0,113,227,0.4);
+}
+.quick div{
+  transition:0.3s ease;
+  cursor:pointer;
+}
+
+.quick div:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+.card{
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(135deg,#2563eb,#38bdf8);
+  opacity:0;
+  z-index:-1;
+  transition:0.3s;
+}
+
+.card:hover::before{
+  opacity:0.15;
+}
+.card a{
+  transition:0.3s;
+}
+
+.card a:hover{
+  background:var(--primary);
+  color:white;
+}
+.daily{
+  transition:0.3s;
+}
+
+.daily:hover{
+  transform:scale(1.02);
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+.doubt-box button{
+  transition:0.3s;
+}
+
+.doubt-box button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(0,113,227,0.35);
 }
 
 </style>
 </head>
+
 <body>
+<input type="text" id="search" placeholder="🔍 Search chapter..." class="search">
 
 <header>
   <h1>📘 Class 10 Mathematics</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">QNS & ANS</a>
+    <a href="#">MCQ Test</a>
+    <a href="#">Notes</a>
+  </nav>
 </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="class10_qns_maths.html">QNS & ANS</a>
-  <a href="class10_MCQ.html">MCQ Test</a>
-  <a href="class10_notes.html">Notes</a>
-</nav>
-
-<section class="content">
-  <h2>Welcome Students</h2>
-  <p>Class 10 Mathematics ke liye complete study material.</p>
+<section class="hero">
+  <h2>Complete Class 10 Maths Study Material</h2>
+  <p>NCERT + CBSE | Notes • MCQs • Practice Questions</p>
+  <a href="#" class="btn">Start Learning</a>
+  <a href="#" class="btn">Download PDF</a>
 </section>
- 
+
+<section class="quick">
+  <div>📘 NCERT Solutions</div>
+  <div>📝 Important Questions</div>
+  <div>🎯 Board MCQs</div>
+  <div>📄 Chapter PDFs</div>
+</section>
+
+<section class="section">
+  <h3>Chapters</h3>
+  <div class="grid">
+
+    <div class="card">
+      <h4>Real Numbers</h4>
+      <a href="#" class="primary">Notes</a>
+      <a href="#">Q&A</a>
+      <a href="#">MCQ</a>
+    </div>
+
+    <div class="card">
+      <h4>Polynomials</h4>
+      <a href="#" class="primary">Notes</a>
+      <a href="#">Q&A</a>
+      <a href="#">MCQ</a>
+    </div>
+
+    <div class="card">
+      <h4>Quadratic Equations</h4>
+      <a href="#" class="primary">Notes</a>
+      <a href="#">Q&A</a>
+      <a href="#">MCQ</a>
+    </div>
+
+    <div class="card">
+      <h4>Triangles</h4>
+      <a href="#" class="primary">Notes</a>
+      <a href="#">Q&A</a>
+      <a href="#">MCQ</a>
+    </div>
+
+    <div class="card">
+      <h4>Trigonometry</h4>
+      <a href="#" class="primary">Notes</a>
+      <a href="#">Q&A</a>
+      <a href="#">MCQ</a>
+    </div>
+
+    <div class="card">
+      <h4>Statistics & Probability</h4>
+      <a href="#" class="primary">Notes</a>
+      <a href="#">Q&A</a>
+      <a href="#">MCQ</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="daily">
+  <h4>🧠 Daily Practice Question</h4>
+  <p>Solve: x² − 5x + 6 = 0</p>
+</div>
+<section class="doubt-box">
+  <h3>❓ Doubt Box</h3>
+  <p>Maths ka koi bhi doubt ho, yahan pucho</p>
+
+  <textarea id="doubtText" placeholder="Type your doubt here..."></textarea>
+
+  <button onclick="submitDoubt()">Submit Doubt</button>
+
+  <div class="success-msg" id="successMsg">
+    ✅ Your doubt has been submitted successfully!
+  </div>
+</section>
+
+
+<footer>
+  <p>© 2026 Studykeeda • Class 10 Mathematics</p>
+  <p>CBSE | NCERT | Board Exam Ready</p>
+</footer>
+<script>
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+search.addEventListener("keyup",()=>{
+  let value = search.value.toLowerCase();
+  cards.forEach(card=>{
+    card.style.display = card.innerText.toLowerCase().includes(value)
+      ? "block" : "none";
+  });
+});
+
+function submitDoubt(){
+  const doubt = document.getElementById("doubtText");
+  const msg = document.getElementById("successMsg");
+
+  if(doubt.value.trim() === ""){
+    alert("Please type your doubt first!");
+    return;
+  }
+
+  // Future backend ke liye ready
+  localStorage.setItem("lastDoubt", doubt.value);
+
+  doubt.value = "";
+  msg.style.display = "block";
+
+  setTimeout(()=>{
+    msg.style.display = "none";
+  },3000);
+}
+
+</script>
 </body>
 </html>
