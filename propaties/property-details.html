@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - Royal Estate Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Royal Estate Pro</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle">🌙</button>
+        </div>
+    </nav>
+
+    <section class="property-details">
+        <div class="container">
+            <div class="gallery" id="gallery">
+                <!-- Images -->
+            </div>
+            <div class="details">
+                <h1 id="title"></h1>
+                <p id="location-price"></p>
+                <p id="description"></p>
+                <div class="amenities" id="amenities"></div>
+                <div id="map" style="height: 300px;"></div>
+                <div class="mortgage-calc">
+                    <h3>Mortgage Calculator</h3>
+                    <input type="number" placeholder="Loan Amount" id="loan-amount">
+                    <input type="number" placeholder="Interest Rate (%)" id="interest-rate">
+                    <input type="number" placeholder="Years" id="years">
+                    <button class="btn" onclick="calculateMortgage()">Calculate</button>
+                    <p id="mortgage-result"></p>
+                </div>
+                <form class="contact-form" id="contact-agent">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Message" required></textarea>
+                    <button type="submit" class="btn">Contact Agent</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="similar-properties">
+        <div class="container">
+            <h2>Similar Properties</h2>
+            <div class="grid" id="similar-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Royal Estate Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>

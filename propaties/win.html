@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinClub - Best Online Casino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #ffd93d;
+            --primary-red: #ff6b6b;
+            --primary-blue: #667eea;
+            --dark-bg: rgba(0,0,0,0.95);
+            --white: #fff;
+            --shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--dark-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-red), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-gold);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background: var(--primary-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, var(--primary-red), #ff8e8e);
+            color: var(--white);
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255,107,107,0.4);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #764ba2 50%, var(--primary-red) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 90px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-gold), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255,217,61,0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 20px 45px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-gold), #ffed4e);
+            color: #333;
+            box-shadow: 0 10px 30px rgba(255,217,61,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255,217,61,0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 3px solid var(--primary-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: #333;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 5rem;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f4f8 100%);
+            padding: 120px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-gold), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .game-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--primary-red));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.15);
+        }
+
+        .game-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .game-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image::after {
+            content: 'PLAY';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover .game-image::after {
+            opacity: 1;
+        }
+
+        .game-info {
+            padding: 2.5rem 2rem 2rem;
+        }
+
+        .game-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .game-rating {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            color: #7f8c8d;
+        }
+
+        /* Features */
+        .features {
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 4.5rem;
+            background: linear-gradient(45deg, var(--primary-red), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            color: var(--white);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer h4 {
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .footer a {
+            color: #888;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer a:hover {
+            color: var(--primary-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero {
+                padding-top: 120px;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">🎰 WinClub</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#live">Live Casino</a></li>
+                <li><a href="#sports">Sports</a></li>
+                <li><a href="#promos">Promotions</a></li>
+                <li><a href="#vip">VIP</a></li>
+            </ul>
+            <a href="#login" class="login-btn">
+                <i class="fas fa-user"></i> Login / Register
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>🎉 Welcome to WinClub</h1>
+            <p><strong>₹10,000 Welcome Bonus</strong> + <strong>250 Free Spins</strong><br>
+            Join 500K+ players & win BIG today!</p>
+            <div class="cta-buttons">
+                <a href="#games" class="btn-primary">
+                    <i class="fas fa-play-circle"></i>
+                    Play Now
+                </a>
+                <a href="#promos" class="btn-secondary">
+                    <i class="fas fa-gift"></i>
+                    Claim Bonus
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats fade-in" id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>₹50Cr+</h3>
+                    <p>Total Payouts</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15K+</h3>
+                    <p>Games Available</p>
+                </div>
+                <div class="stat-item">
+                    <h3>750K+</h3>
+                    <p>Happy Players</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>Uptime Guarantee</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Games -->
+    <section class="section fade-in" id="games">
+        <div class="container">
+            <h2 class="section-title">🔥 Featured Games</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-slot-machine"></i>
+                    </div>
+                    <div class="game
+                <div class="game-info">
+                        <h3>Mega Fortune</h3>
+                        <div class="game-rating">★★★★★ 4.9</div>
+                        <div class="game-meta">
+                            <span>Jackpot: ₹2.5Cr</span>
+                            <span>RTP: 96.8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-dice-d20"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Lightning Roulette</h3>
+                        <div class="game-rating">★★★★☆ 4.7</div>
+                        <div class="game-meta">
+                            <span>Live Dealer</span>
+                            <span>RTP: 97.3%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Gonzo's Quest</h3>
+                        <div class="game-rating">★★★★★ 4.8</div>
+                        <div class="game-meta">
+                            <span>Volatility: High</span>
+                            <span>RTP: 95.9%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Blackjack Classic</h3>
+                        <div class="game-rating">★★★★★ 4.9</div>
+                        <div class="game-meta">
+                            <span>RTP: 99.5%</span>
+                            <span>Table Game</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Starburst</h3>
+                        <div class="game-rating">★★★★★ 4.9</div>
+                        <div class="game-meta">
+                            <span>Most Popular</span>
+                            <span>RTP: 96.1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Book of Dead</h3>
+                        <div class="game-rating">★★★★☆ 4.6</div>
+                        <div class="game-meta">
+                            <span>Max Win: 5,000x</span>
+                            <span>RTP: 96.2%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="#games" class="btn-primary" style="font-size: 1.3rem; padding: 20px 60px;">
+                    <i class="fas fa-gamepad"></i> Explore All 15,000+ Games
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features section fade-in">
+        <div class="container">
+            <h2 class="section-title">✅ Why Choose WinClub?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Biggest Wins</h3>
+                    <p>Progressive jackpots up to ₹10Cr+ and highest RTP games for maximum winning potential.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile First</h3>
+                    <p>Perfect gaming experience on any device - iOS, Android, Desktop & Tablet.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>100% Secure</h3>
+                    <p>Licensed by MGA & UKGC with bank-level SSL encryption. Your data is safe.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Live chat, WhatsApp, email & phone support available 24 hours, 7 days a week.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Instant Payments</h3>
+                    <p>UPI, Paytm, PhonePe, Crypto, Bank Transfer. Withdraw in 5 minutes!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Trusted by Millions</h3>
+                    <p>750K+ active players trust WinClub for fair play and fast payouts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Preview -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-gold), var(--primary-red)); color: white;" id="promos">
+        <div class="container">
+            <h2 class="section-title" style="background: linear-gradient(45deg, white, rgba(255,255,255,0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🎁 Hot Promotions</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">💰 Welcome Bonus</h3>
+                    <p style="font-size: 1.3rem; margin-bottom: 1.5rem;"><strong>100% UP TO ₹10,000</strong> + 250 Free Spins</p>
+                    <div style="font-size: 1.1rem; opacity: 0.9;">Min Deposit ₹500 | WR: 35x</div>
+                    <a href="#login" class="btn-primary" style="margin-top: 1.5rem; background: rgba(0,0,0,0.3); color: white; border: 2px solid white;">Claim Now</a>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">⚡ Daily Cashback</h3>
+                    <p style="font-size: 1.3rem; margin-bottom: 1.5rem;"><strong>10% UP TO ₹5,000</strong></p>
+                    <div style="font-size: 1.1rem; opacity: 0.9;">Everyday • No Wagering</div>
+                    <a href="#login" class="btn-primary" style="margin-top: 1.5rem; background: rgba(0,0,0,0.3); color: white; border: 2px solid white;">Get Cashback</a>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🏆 Weekly Tournament</h3>
+                    <p style="font-size: 1.3rem; margin-bottom: 1.5rem;"><strong>₹2,00,000 Prize Pool</strong></p>
+                    <div style="font-size: 1.1rem; opacity: 0.9;">Top 50 players win!</div>
+                    <a href="#login" class="btn-primary" style="margin-top: 1.5rem; background: rgba(0,0,0,0.3); color: white; border: 2px solid white;">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4><i class="fas fa-crown"></i> WinClub</h4>
+                    <p style="max-width: 300px; line-height: 1.7; opacity: 0.8;">India's #1 Online Casino. Licensed, secure & trusted by 750K+ players.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" style="color: var(--primary-gold); font-size: 1.5rem; margin-right: 1rem;"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" style="color: var(--primary-gold); font-size: 1.5rem; margin-right: 1rem;"><i class="fab fa-telegram"></i></a>
+                        <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Responsible Gaming</a>
+                    <a href="#">Payment Methods</a>
+                    <a href="#">Affiliate Program</a>
+                </div>
+                <div>
+                    <h4>Games</h4>
+                    <a href="#">Slots (8K+)</a>
+                    <a href="#">Live Casino</a>
+                    <a href="#">Table Games</a>
+                    <a href="#">Crash Games</a>
+                    <a href="#">Aviator</a>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <a href="#">Live Chat 24/7</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Withdrawal Guide</a>
+                    <a href="#">VIP Program</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WinClub Casino. All rights reserved. | Licensed by Curacao Gaming Authority | 18+ only. Gamble Responsibly. | <strong>Support: +91 9876543210</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; backdrop-filter: blur(10px);">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 3rem; border-radius: 25px; max-width: 450px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.3);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="color: #2c3e50; font-size: 2rem;">🔐 Login / Register</h2>
+                <button onclick="closeLogin()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #999;">×</button>
+            </div>
+            <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <input type="text" placeholder="👤 Username / Email / Phone" style="padding: 18px; border: 2px solid #e1e8ed; border-radius: 15px; font-size: 1rem; transition: border-color 0.3s ease;" required>
+                <input type="password" placeholder="🔒 Password" style="padding: 18px; border: 2px solid #e1e8ed; border-radius: 15px; font-size: 1rem; transition: border-color 0.3s ease;" required>
+                <button type="submit" class="btn-primary" style="padding: 18px; font-size: 1.1rem; font-weight: 700;">🚀 Login Now</button>
+                <div style="text-align: center;">
+                    <p style="margin: 0; color: #666;">Don't have account? <a href="#" style="color: var(--primary-red); font-weight: 600;">Register Free</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling & Navbar active
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar links
+            document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active link
+                        document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(0,0,0,0.98)';
+                } else {
+                    header.style.background = 'rgba(0,0,0,0.95)';
+                }
+            });
+
+            // Fade in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Login modal
+            document.getElementById('login').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('loginModal').style.display = 'block';
+            });
+        });
+
+        function closeLogin() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Form submit demo
+        document.querySelector('#loginModal form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🎉 Login successful! Welcome to WinClub! 🚀');
+            closeLogin();
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            hero.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-item h3');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.floor(current) + (target > 1000 ? 'K+' : (target > 1000000 ? 'Cr+' : '+'));
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + (target > 1000 ? 'K+' : (target > 1000000 ? 'Cr+' : '+'));
+                    }
+                };
+                
+                if (window.scrollY > 500) {
+                    updateCounter();
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateCounters);
+    </script>
+</body>
+</html>
